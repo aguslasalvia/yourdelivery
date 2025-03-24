@@ -8,6 +8,7 @@ namespace Presentation
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
             // Connection to SQL
             builder.Services.AddDbContext<DbContext, UserContext>(
                 options => options.UseSqlServer(
