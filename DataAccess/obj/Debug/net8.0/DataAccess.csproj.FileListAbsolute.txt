@@ -1,0 +1,15 @@
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\DataAccess\bin\Debug\net8.0\DataAccess.deps.json
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\DataAccess\bin\Debug\net8.0\DataAccess.dll
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\DataAccess\bin\Debug\net8.0\DataAccess.pdb
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\DataAccess\bin\Debug\net8.0\BusinessLogic.dll
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\DataAccess\bin\Debug\net8.0\BusinessLogic.pdb
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\DataAccess\obj\Debug\net8.0\DataAccess.csproj.AssemblyReference.cache
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\DataAccess\obj\Debug\net8.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\DataAccess\obj\Debug\net8.0\DataAccess.AssemblyInfoInputs.cache
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\DataAccess\obj\Debug\net8.0\DataAccess.AssemblyInfo.cs
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\DataAccess\obj\Debug\net8.0\DataAccess.csproj.CoreCompileInputs.cache
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\DataAccess\obj\Debug\net8.0\DataAccess.csproj.Up2Date
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\DataAccess\obj\Debug\net8.0\DataAccess.dll
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\DataAccess\obj\Debug\net8.0\refint\DataAccess.dll
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\DataAccess\obj\Debug\net8.0\DataAccess.pdb
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\DataAccess\obj\Debug\net8.0\ref\DataAccess.dll

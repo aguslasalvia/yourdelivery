@@ -1,0 +1,11 @@
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\BusinessLogic\bin\Debug\net8.0\BusinessLogic.deps.json
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\BusinessLogic\bin\Debug\net8.0\BusinessLogic.dll
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\BusinessLogic\bin\Debug\net8.0\BusinessLogic.pdb
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\BusinessLogic\obj\Debug\net8.0\BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\BusinessLogic\obj\Debug\net8.0\BusinessLogic.AssemblyInfoInputs.cache
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\BusinessLogic\obj\Debug\net8.0\BusinessLogic.AssemblyInfo.cs
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\BusinessLogic\obj\Debug\net8.0\BusinessLogic.csproj.CoreCompileInputs.cache
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\BusinessLogic\obj\Debug\net8.0\BusinessLogic.dll
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\BusinessLogic\obj\Debug\net8.0\refint\BusinessLogic.dll
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\BusinessLogic\obj\Debug\net8.0\BusinessLogic.pdb
+\\wsl.localhost\Ubuntu-20.04\home\agustin\ort\prog-3\obligatorio-p3\BusinessLogic\obj\Debug\net8.0\ref\BusinessLogic.dll
