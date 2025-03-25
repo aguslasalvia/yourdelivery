@@ -1,7 +1,7 @@
 ﻿using BusinessLogic.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess
+namespace Infrastructure.Persistence
 {
     public class AppDbContext(DbContextOptions options):DbContext(options)
     {

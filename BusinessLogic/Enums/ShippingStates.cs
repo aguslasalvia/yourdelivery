@@ -1,4 +1,4 @@
-﻿namespace BusinessLogic.Enums
+﻿namespace Core.Enums
 {
     public enum ShippingState
     {

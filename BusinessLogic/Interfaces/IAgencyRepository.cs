@@ -1,7 +1,7 @@
-﻿using BusinessLogic.Domain;
+﻿using Core.Entities;
 
 
-namespace BusinessLogic.Interfaces
+namespace Core.Interfaces
 {
     public interface IAgencyRepository
     {

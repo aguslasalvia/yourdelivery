@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using DataAccess;
+using Infrastructure.Persistence;
 namespace Presentation
 {
     public class Program

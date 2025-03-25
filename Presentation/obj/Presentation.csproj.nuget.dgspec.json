@@ -4,12 +4,12 @@
     "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Presentation\\Presentation.csproj": {}
   },
   "projects": {
-    "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\BusinessLogic.csproj": {
+    "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\BusinessLogic.csproj",
-        "projectName": "BusinessLogic",
-        "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\BusinessLogic.csproj",
+        "projectUniqueName": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\Core.csproj",
+        "projectName": "Core",
+        "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\Core.csproj",
         "packagesPath": "C:\\Users\\agusb\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
@@ -69,12 +69,12 @@
         }
       }
     },
-    "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\DataAccess.csproj": {
+    "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\DataAccess.csproj",
-        "projectName": "DataAccess",
-        "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\agusb\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\obj\\",
         "projectStyle": "PackageReference",
@@ -97,8 +97,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\BusinessLogic.csproj": {
-                "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\BusinessLogic.csproj"
+              "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\Core.csproj": {
+                "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\Core.csproj"
               }
             }
           }
@@ -172,8 +172,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\DataAccess.csproj": {
-                "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\DataAccess.csproj"
+              "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\Infrastructure.csproj"
               }
             }
           }

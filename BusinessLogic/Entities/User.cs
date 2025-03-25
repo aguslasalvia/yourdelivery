@@ -1,11 +1,11 @@
-﻿using BusinessLogic.Enums;
+﻿using Core.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLogic.Domain
+namespace Core.Entities
 {
     public class User ( String name, String lastname, String phone, DateOnly birth,String email, String password, Role role)
     {

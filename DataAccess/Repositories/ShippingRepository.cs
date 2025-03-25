@@ -1,9 +1,9 @@
 ﻿
-using BusinessLogic.Domain;
-using BusinessLogic.Interfaces;
+using Core.Entities;
+using Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess
+namespace Infrastructure.Repositories
 {
     public class ShippingRepository(DbContext context) : IShippingRepository
     {

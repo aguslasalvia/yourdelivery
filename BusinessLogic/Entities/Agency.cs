@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLogic.Domain
+namespace Core.Entities
 {
     
     public class Agency(String name, String direction,int postal,float latitude, float longitude)

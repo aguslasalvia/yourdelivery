@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\BusinessLogic.csproj",
-      "projectName": "BusinessLogic",
-      "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\BusinessLogic.csproj",
+      "projectUniqueName": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\Core.csproj",
+      "projectName": "Core",
+      "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\Core.csproj",
       "packagesPath": "C:\\Users\\agusb\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\obj\\",
       "projectStyle": "PackageReference",
