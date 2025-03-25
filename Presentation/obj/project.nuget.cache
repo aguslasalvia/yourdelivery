@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GVIEzhAxZg4=",
+  "dgSpecHash": "SYmsuC7IWeQ=",
   "success": true,
-  "projectFilePath": "\\\\wsl.localhost\\Ubuntu-20.04\\home\\agustin\\ort\\prog-3\\obligatorio-p3\\Presentation\\Presentation.csproj",
+  "projectFilePath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Presentation\\Presentation.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\agusb\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\agusb\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

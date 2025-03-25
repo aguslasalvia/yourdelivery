@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using DataAccess.Context;
+using DataAccess;
 namespace Presentation
 {
     public class Program
@@ -9,8 +9,8 @@ namespace Presentation
             var builder = WebApplication.CreateBuilder(args);
 
 
-            // Connection to SQL
-            builder.Services.AddDbContext<DbContext, UserContext>(
+            //// Connection to SQL
+            builder.Services.AddDbContext<DbContext, AppDbContext>(
                 options => options.UseSqlServer(
                     builder.Configuration.GetConnectionString("StringConnection")
                     )

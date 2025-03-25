@@ -2850,11 +2850,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "\\\\wsl.localhost\\Ubuntu-20.04\\home\\agustin\\ort\\prog-3\\obligatorio-p3\\Presentation\\Presentation.csproj",
+      "projectUniqueName": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Presentation\\Presentation.csproj",
       "projectName": "Presentation",
-      "projectPath": "\\\\wsl.localhost\\Ubuntu-20.04\\home\\agustin\\ort\\prog-3\\obligatorio-p3\\Presentation\\Presentation.csproj",
+      "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Presentation\\Presentation.csproj",
       "packagesPath": "C:\\Users\\agusb\\.nuget\\packages\\",
-      "outputPath": "\\\\wsl.localhost\\Ubuntu-20.04\\home\\agustin\\ort\\prog-3\\obligatorio-p3\\Presentation\\obj\\",
+      "outputPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Presentation\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2869,16 +2869,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://packagesource": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "\\\\wsl.localhost\\Ubuntu-20.04\\home\\agustin\\ort\\prog-3\\obligatorio-p3\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "\\\\wsl.localhost\\Ubuntu-20.04\\home\\agustin\\ort\\prog-3\\obligatorio-p3\\DataAccess\\DataAccess.csproj"
+            "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\DataAccess.csproj"
             }
           }
         }
@@ -2893,7 +2891,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -2927,7 +2925,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
