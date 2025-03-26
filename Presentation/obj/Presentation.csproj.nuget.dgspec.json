@@ -4,14 +4,14 @@
     "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Presentation\\Presentation.csproj": {}
   },
   "projects": {
-    "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\Core.csproj": {
+    "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\Core.csproj",
+        "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\agusb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\obj\\",
+        "outputPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -69,14 +69,14 @@
         }
       }
     },
-    "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\Infrastructure.csproj": {
+    "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\Infrastructure.csproj",
+        "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\agusb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -97,8 +97,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\Core.csproj": {
-                "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\BusinessLogic\\Core.csproj"
+              "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Core\\Core.csproj"
               }
             }
           }
@@ -172,8 +172,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\Infrastructure.csproj"
+              "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }

@@ -1,4 +1,4 @@
-﻿using BusinessLogic.Domain;
+﻿using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence

@@ -2827,13 +2827,13 @@
     },
     "Core/1.0.0": {
       "type": "project",
-      "path": "../BusinessLogic/Core.csproj",
-      "msbuildProject": "../BusinessLogic/Core.csproj"
+      "path": "../Core/Core.csproj",
+      "msbuildProject": "../Core/Core.csproj"
     },
     "Infrastructure/1.0.0": {
       "type": "project",
-      "path": "../DataAccess/Infrastructure.csproj",
-      "msbuildProject": "../DataAccess/Infrastructure.csproj"
+      "path": "../Infrastructure/Infrastructure.csproj",
+      "msbuildProject": "../Infrastructure/Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2875,8 +2875,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\DataAccess\\Infrastructure.csproj"
+            "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\agusb\\Documents\\ORT\\prog-3\\obligatorio-p3\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }

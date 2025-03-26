@@ -1,22 +1,28 @@
-html {
-  font-size: 14px;
-}
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+html,
 body {
-  margin-bottom: 60px;
+	height: 100%;
+	width: 100%;
+}
+
+.input-group-text,
+.form-control {
+	height: 50px !important;
+}
+
+.bg-primary {
+	background-color: #ffc30d !important;
+}
+
+.btn-primary {
+	background-color: #f8810d !important;
+	border-color: #f8810d !important;
+	border-radius: 10px !important;
+}
+
+
+.btn-primary:hover {
+	background-color: #e04e2a !important;
+	border-color: #b03c21 !important;
 }

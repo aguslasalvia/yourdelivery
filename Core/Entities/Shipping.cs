@@ -1,13 +1,8 @@
 ﻿using Core.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public class Shipping (int id,int tracking,decimal weight,User employee,User client,ShippingState state)
+    public  class Shipping (int id,int tracking,decimal weight,User employee,User client,ShippingState state)
     {
         public int ID { get; set; } = id;
         public int Tracking { get; set; } = tracking;
@@ -19,5 +14,9 @@ namespace Core.Entities
         public ShippingState State { get; set; } = state;
 
 
+        public override string ToString()
+        {
+            return $"{ID} - {Tracking} - {State}";
+        }
     }
 }
