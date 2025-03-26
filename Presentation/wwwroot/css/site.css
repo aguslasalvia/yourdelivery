@@ -4,11 +4,28 @@ html,
 body {
 	height: 100%;
 	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .input-group-text,
 .form-control {
 	height: 50px !important;
+}
+
+.input-group-text {
+	background-color: #f8810d;
+	border-color: #f8810d;
+	font-size: 22px;
+}
+
+.form-control:focus {
+	color: #212529;
+	background-color: #fff;
+	border-color: #f8810d;
+	outline: 0;
+	box-shadow: 0 0 0 0.25rem #ffba76;
 }
 
 .bg-primary {

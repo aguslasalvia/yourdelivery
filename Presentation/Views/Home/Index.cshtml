@@ -1,27 +1,31 @@
 ﻿<!-- Login -->
 <div id="login" class="d-flex justify-content-center align-items-center">
-	<div class="box-container h-75 d-flex justify-content-center align-items-center">
-		<div>
-			<figure class=" d-flex flex-column justify-content-center align-items-center">
-				<img src="/assets/delivery.png" alt="">
-			</figure>
+	<div class="box-container h-75 d-flex justify-content-center ">
 
-		</div>
+		<figure class=" d-flex flex-column justify-content-center align-items-center">
+			<img src="/assets/delivery.png" alt="">
+		</figure>
+
+
 		<div class="form-box h-100  bg-primary shadow-lg d-flex flex-column justify-content-center align-items-center">
 			<h1 class="text-white mb-5">Login</h1>
+
 			<form action="" class=" w-100 d-flex flex-column justify-content-center align-items-center">
+
 				<div class="input-group mb-3 w-75 w ">
 					<span class="input-group-text" id="basic-addon1">@@</span>
-					<input type="text" class="form-control" placeholder="Username" aria-label="Username"
-						aria-describedby="basic-addon1">
+					<input type="email" class="form-control" placeholder="Email" aria-label="Email"
+						aria-describedby="basic-addon1" required>
 				</div>
+
 				<div class="input-group mb-3 w-75">
 					<span class="input-group-text" id="basic-addon1"><i class="bi bi-key"></i></span>
 					<input type="password" class="form-control" placeholder="Password" aria-label="Password"
-						aria-describedby="basic-addon1">
+						aria-describedby="basic-addon1" required>
 				</div>
 
-				<button type="submit" class="btn btn-primary w-25 ">Login</button>
+				<button type="submit" class="btn btn-primary w-25 mt-3">Login</button>
+
 			</form>
 		</div>
 	</div>
@@ -41,11 +45,15 @@
 	}
 
 	.box-container {
+		width: 1200px;
 		box-shadow: inset 0 0 20px #ffc30d;
 		border-radius: 30px !important;
 	}
 
 
+	figure {
+		width: 60%;
+	}
 
 	img {
 		width: 500px;
