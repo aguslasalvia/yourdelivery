@@ -5,7 +5,7 @@
 :root {
 	--primary-color: #fb8500;
 	--secondary-color: #ffb703;
-	--third-color: #023047;
+	--third-color: #111827;
 	--fourth-color: #219ebc;
 	--fifth-color: #8ecae6;
 }
@@ -63,7 +63,15 @@ span {
 }
 
 .bg-primary {
+	background-color: var(--primary-color) !important;
+}
+
+.bg-secondary {
 	background-color: var(--secondary-color) !important;
+}
+
+.bg-third{
+	background-color: var(--third-color) !important;
 }
 
 .btn-primary {

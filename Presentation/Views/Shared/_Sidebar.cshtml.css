@@ -1,0 +1,12 @@
+a:hover{
+    color: var(--secondary-color) !important;
+}
+
+#sidebar{
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+i{
+    font-size: 15px !important;
+}
