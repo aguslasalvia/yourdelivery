@@ -36,6 +36,13 @@ body {
 }
 
 .input-group-text {
+	border-radius: 5px 0 0 5px;
+	border: none;
+	display: flex;
+	justify-content: center;
+}
+
+.input-group-text {
 	background-color: var(--fifth-color);
 	border-color: var(--fourth-color);
 	font-size: 22px;
@@ -73,6 +80,5 @@ span {
 
 footer.footer .container {
 	border-radius: 10px 10px 0 0;
-	/* Bordes redondeados solo en la parte superior */
 	padding: 10px;
 }
