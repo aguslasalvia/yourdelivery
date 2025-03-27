@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Infrastructure.Persistence;
+// using Infrastructure.Persistence;
 namespace Presentation
 {
     public class Program
@@ -10,11 +10,11 @@ namespace Presentation
 
 
             //// Connection to SQL
-            builder.Services.AddDbContext<DbContext, AppDbContext>(
-                options => options.UseSqlServer(
-                    builder.Configuration.GetConnectionString("StringConnection")
-                    )
-                );
+            // builder.Services.AddDbContext<DbContext, AppDbContext>(
+            //     options => options.UseSqlServer(
+            //         builder.Configuration.GetConnectionString("StringConnection")
+            //         )
+            //     );
 
 
             // Add services to the container.
