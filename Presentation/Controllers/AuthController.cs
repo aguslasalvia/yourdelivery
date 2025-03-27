@@ -17,9 +17,11 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public IActionResult SubmitLogin([FromBody] LoginUserDTO userLogin)
+        public IActionResult SubmitLogin(LoginUserDTO userLogin)
         {
             // TODO: Search the user on the DB
+            Console.WriteLine(userLogin.Password);
+            Console.WriteLine(userLogin.Email);
             
             return RedirectToAction("Dashboard","User");
         }
