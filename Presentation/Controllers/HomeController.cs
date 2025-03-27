@@ -11,7 +11,7 @@ namespace Presentation.Controllers
 		public IActionResult Index()
 		{
 			ViewData["Title"] = "Login";
-			return View();
+			return RedirectToAction("Login", "Auth");
 		}
 
 		public IActionResult Privacy()
