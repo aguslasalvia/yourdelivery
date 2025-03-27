@@ -1,7 +1,7 @@
 <!-- Login -->
 
 <div id="login" class="d-flex justify-content-center align-items-center">
-    <div class="box-container h-75 d-flex justify-content-center ">
+    <div class="box-container h-75 d-flex justify-content-center mb-5 ">
 
         <figure class=" d-flex flex-column justify-content-center align-items-center">
             <img src="/assets/delivery.png" alt="">
@@ -12,20 +12,20 @@
             <h1 class="text-white mb-5">Login</h1>
 
             <form 
-                action="~/Auth/SubmitLogin" 
+                action="@Url.Action("SubmitLogin","Auth")" 
                 method="post" 
                 class=" w-100 d-flex flex-column justify-content-center align-items-center"
                   >
 
                 <div class="input-group mb-3 w-75 w ">
                     <span class="input-group-text" id="basic-addon1">@@</span>
-                    <input type="email" class="form-control" placeholder="Email" aria-label="Email"
+                    <input type="email" class="form-control" name="Email" placeholder="Email" aria-label="Email"
                            aria-describedby="basic-addon1" required>
                 </div>
 
                 <div class="input-group mb-3 w-75">
                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-key"></i></span>
-                    <input type="password" class="form-control" placeholder="Password" aria-label="Password"
+                    <input type="password" class="form-control" name="Password" placeholder="Password" aria-label="Password"
                            aria-describedby="basic-addon1" required>
                 </div>
 

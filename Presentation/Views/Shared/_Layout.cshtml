@@ -13,17 +13,17 @@
 <body>
 @if (ViewBag.User != null)
 {
-	@Html.Partial("_Sidebar")
+	Html.RenderPartialAsync("_Sidebar");
 }
 <div class="container">
-	<main role="main" class="pb-3">
+	<main role="main" class="">
 		@RenderBody()
 	</main>
 </div>
 
 @if (ViewBag.User == null)
 	{
-		<footer class=" footer text-muted text-center ">
+		<footer class="footer text-muted text-center ">
 			<div class="container bg-secondary">
 				&copy; 2025 - Obligatorio - N3F - Agustin Lasalvia - Martin Leib
 			</div>
