@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public class User ( String name, String lastname, String phone, DateOnly birth,String email, String password, Role role)
+    public class User ( string name, string lastname, string phone, DateOnly birth,string email, string password, Role role)
     {
         public Role Role { get; set; } = role;
-        public String Name { get; set; } = name;
-        public String Phone { get; set; } = phone;
-        public String Email { get; set; } = email;
+        public string Name { get; set; } = name;
+        public string Phone { get; set; } = phone;
+        public string Email { get; set; } = email;
         public DateOnly Birth { get; set; } = birth;
-        public String Password { get; set; } = password;
-        public String Lastname { get; set; } = lastname;
+        public string Password { get; set; } = password;
+        public string Lastname { get; set; } = lastname;
 
     }
 }

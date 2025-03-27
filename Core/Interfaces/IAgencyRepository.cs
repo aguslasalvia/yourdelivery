@@ -5,11 +5,11 @@ namespace Core.Interfaces
 {
     public interface IAgencyRepository
     {
-        Agency Add ( Agency Agency );
-        Agency Update ( Agency Agency );
-        Agency Delete ( Agency Agency );
+        Agency Add ( Agency agency );
+        Agency Update ( Agency agency );
+        Agency Delete ( Agency agency );
 
-        Agency? GetByName( String name );
+        Agency? GetByName( string name );
 
         IEnumerable<Agency> GetAll ();
     }
