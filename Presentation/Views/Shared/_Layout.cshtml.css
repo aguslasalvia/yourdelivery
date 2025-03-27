@@ -37,7 +37,29 @@ button.accept-policy {
 .footer {
   position: absolute;
   bottom: 0;
+ 
+  /*height: 40px;*/
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
+  animation: fadeIn 0.8s ease-in-out;
+
 }
+
+.footer .container{
+  padding: 0 !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
