@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-// using Infrastructure.Persistence;
+using Infrastructure.Persistence;
+using Infrastructure.Repositories;
+using Core.Interfaces;
 namespace Presentation
 {
     public class Program
@@ -9,18 +11,35 @@ namespace Presentation
             var builder = WebApplication.CreateBuilder(args);
 
 
-            //// Connection to SQL
-            // builder.Services.AddDbContext<DbContext, AppDbContext>(
-            //     options => options.UseSqlServer(
-            //         builder.Configuration.GetConnectionString("StringConnection")
-            //         )
-            //     );
+            // Connection to SQL
+             builder.Services.AddDbContext<DbContext, AppDbContext>(
+                 options => options.UseSqlServer(
+                     builder.Configuration.GetConnectionString("StringConnection")
+                     )
+                 );
+             
+                 // builder.Services.AddScoped(typeof(IShippingRepository), typeof(ShippingRepository));
+
 
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+            
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                try
+                {
+                    dbContext.Database.EnsureCreated();  // Verifica si la BD existe, si no la crea
+                    Console.WriteLine("✅ Conexión exitosa a SQL Server.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"❌ Error de conexión: {ex.Message}");
+                }
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

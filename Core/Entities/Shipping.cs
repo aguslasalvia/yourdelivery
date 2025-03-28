@@ -2,18 +2,29 @@
 
 namespace Core.Entities
 {
-    public  class Shipping (int id,int tracking,decimal weight,User employee,User client,ShippingState state)
-    {
-        public int ID { get; set; } = id;
-        public int Tracking { get; set; } = tracking;
-        public decimal Weight { get; set; } = weight;
+    public  class Shipping {
+        public int ID { get; set; } 
+        public int Tracking { get; set; } 
+        public float Weight { get; set; }
+
+        public int Employee { get; set; } 
         
-        public User Employee { get; set; } = employee;
-        public User Client { get; set; } = client;
+        public int Client { get; set; } 
 
-        public ShippingState State { get; set; } = state;
+        public Role State { get; set; } 
 
-
+        
+        public Shipping() { }
+         
+        public Shipping(int id, int tracking, float weight, int employeeId, int clientId, Role state)
+        {
+            ID = id;
+            Tracking = tracking;
+            Weight = weight; 
+            Employee = employeeId;
+            Client = clientId;
+            State = state;
+        }
         public override string ToString()
         {
             return $"{ID} - {Tracking} - {State}";

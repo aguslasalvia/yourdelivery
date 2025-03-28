@@ -2,8 +2,8 @@
 
 namespace Core.Entities
 {
-    public class CommonShipping(int id, int tracking, decimal weight, User employee, User client, ShippingState state,Agency pickup
-        ) : Shipping(id, tracking, weight, employee, client, state)
+    public  class CommonShipping(int id, int tracking, float weight, int employeeId, int clientId, Role state,Agency pickup
+        ) : Shipping(id, tracking, weight, employeeId, clientId, state)
     {
         public Agency PickUpAgency { get; set; } = pickup;
     }

@@ -2,4 +2,4 @@ using Core.Enums;
 
 namespace DTO.User;
 
-public record UserUpdateDTO(String name, String lastname, String phone, DateOnly birth,String email, String password, Role role);
+public record UserUpdateDTO(string name, string lastname, string phone, DateOnly birth,string email, string password, Role role);
