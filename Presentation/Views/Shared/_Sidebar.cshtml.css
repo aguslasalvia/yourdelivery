@@ -2,14 +2,36 @@ a:hover{
     color: var(--secondary-color) !important;
 }
 
-#sidebar{
+#sidebar {
+    position: relative; 
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
     border-bottom-right-radius: 10px;
     border-top-right-radius: 10px;
     animation: fadeIn 0.8s ease-in-out;
+    width: 210px !important;
+    max-width: 230px !important;
 }
 
+#logout {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%); 
+    width: 90%;
+}
+
+
 i{
-    font-size: 15px !important;
+    font-size: 19px !important;
+    margin-right: 5px;
+}
+
+hr{
+    margin: 0 10px;
 }
 
 @keyframes fadeIn {

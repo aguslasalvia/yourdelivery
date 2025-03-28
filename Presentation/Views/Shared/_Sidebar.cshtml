@@ -3,31 +3,34 @@
 @* </button> *@
 
 <div id="sidebar" class="collapse d-md-block bg-third text-white vh-100 p-3" style="width: 210px;">
-    <a href="/" class="text-white text-decoration-none d-flex align-items-center mb-3">
-        <span class="fs-5">Welcome @ViewBag.User</span>
-    </a>
     <hr>
     <ul class="nav nav-pills flex-column">
         <li class="nav-item">
             <a href="@Url.Action("Index", "Home")" class="nav-link text-white">
-                <i class="bi bi-house-door"></i> Inicio
+                <i class="bi bi-house-door"></i> Home
             </a>
         </li>
         <li class="nav-item">
             <a href="@Url.Action("Profile", "User")" class="nav-link text-white">
-                <i class="bi bi-person"></i> Perfil
+                <i class="bi bi-person"></i> Profile
             </a>
         </li>
         <li class="nav-item">
             <a href="@Url.Action("Settings", "User")" class="nav-link text-white">
-                <i class="bi bi-gear"></i> Configuración
+                <i class="bi bi-gear"></i> Settings
             </a>
         </li>
-        <li class="nav-item">
-            <a href="@Url.Action("Logout", "Auth")" class="nav-link text-white">
-                <i class="bi bi-box-arrow-right"></i> Cerrar sesión
-            </a>
-        </li>
+        
+        
+            
+        
     </ul>
+    
+    <div id="logout" class="w-100 d-flex flex-column justify-content-center align-items-center">
+        <hr/>    
+        <a href="@Url.Action("Logout", "Auth")" class="nav-link text-white">
+            <i class="bi bi-box-arrow-right"></i> Log Out
+        </a>
+    </div>
 </div>
 

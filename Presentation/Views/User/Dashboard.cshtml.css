@@ -1,0 +1,66 @@
+#dashboard{
+    width:100%;
+    height: 100vh;
+    flex-direction: column;
+    animation: fadeIn 0.8s ease-in-out;
+
+}
+
+p{
+    font-family: 'Poppins', sans-serif;
+    font-size: 60px;
+    text-align: center;
+    color: var(--secondary-color);
+    font-weight: bold;
+    /*text-shadow: 0 0 10px rgba(0, 191, 255, 0.8),*/
+    /*0 0 20px rgba(0, 191, 255, 0.6),*/
+    /*0 0 30px rgba(0, 191, 255, 0.4);*/
+    /*animation: glow 1.5s infinite alternate; */
+
+}
+
+img{
+    animation: movement 1s ease-in-out infinite !important;
+}
+
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px rgba(0, 191, 255, 0.8),
+        0 0 20px rgba(0, 191, 255, 0.6),
+        0 0 30px rgba(0, 191, 255, 0.4);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(0, 191, 255, 1),
+        0 0 30px rgba(0, 191, 255, 0.8),
+        0 0 40px rgba(0, 191, 255, 0.6);
+    }
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes movement {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(30px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
