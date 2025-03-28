@@ -2,8 +2,8 @@
 
 namespace Core.Entities
 {
-    public class UrgentShipping(int id, int tracking, float weight, int employeeId, int clientId, 
-        Role state,string address,DateTime send,DateTime? arrival ) : Shipping(id, tracking, weight, employeeId, clientId, state)
+    public class UrgentShipping(int id, int tracking, float weight, User employee, User client, 
+        Role state,string address,DateTime send,DateTime? arrival ) : Shipping(id, tracking, weight, employee, client, state)
     {
         public string Address { get; set; } = address;
         public DateTime Send { get; set; } = send;

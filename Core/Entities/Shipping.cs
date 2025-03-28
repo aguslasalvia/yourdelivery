@@ -7,22 +7,22 @@ namespace Core.Entities
         public int Tracking { get; set; } 
         public float Weight { get; set; }
 
-        public int Employee { get; set; } 
+        public User Employee { get; set; } 
         
-        public int Client { get; set; } 
+        public User Client { get; set; } 
 
         public Role State { get; set; } 
 
         
         public Shipping() { }
          
-        public Shipping(int id, int tracking, float weight, int employeeId, int clientId, Role state)
+        public Shipping(int id, int tracking, float weight, User employee, User client, Role state)
         {
             ID = id;
             Tracking = tracking;
             Weight = weight; 
-            Employee = employeeId;
-            Client = clientId;
+            Employee = employee;
+            Client = client;
             State = state;
         }
         public override string ToString()

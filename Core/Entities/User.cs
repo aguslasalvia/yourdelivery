@@ -16,6 +16,8 @@ namespace Core.Entities
         public DateOnly Birth { get; set; } = birth;
         public string Password { get; set; } = password;
         public string Lastname { get; set; } = lastname;
+        
+        
 
     }
 }
