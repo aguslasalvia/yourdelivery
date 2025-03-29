@@ -11,7 +11,7 @@
 </head>
 
 <body>
-@if (ViewBag.User != null)
+@if (@Context.Session.GetString("Role") != null)
 {
 	Html.RenderPartialAsync("_Sidebar");
 }

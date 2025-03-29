@@ -9,7 +9,8 @@ namespace Presentation
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            
+            builder.Services.AddSession();
 
             // Connection to SQL
             builder.Services.AddDbContext<DbContext, AppDbContext>(
@@ -26,6 +27,9 @@ namespace Presentation
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+            
+            app.UseSession();
+
 
             using (var scope = app.Services.CreateScope())
             {

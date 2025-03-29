@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using System.Runtime.InteropServices.JavaScript;
 using Core.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
@@ -13,23 +12,22 @@ namespace Presentation.Controllers
         public IActionResult Dashboard()
         {
             ViewData["Title"] = "Dashboard";
-            ViewBag.User = "Testing";
+            ViewBag.User = "Test";
+
             return View();
         }
 
 
-
+        
         [HttpGet]
         public IActionResult Users()
         {
-
-            int? role = HttpContext.Session.GetInt32("Role");
-            
-            if (role == null || (Role)role != Role.Administrator)
+            var role = HttpContext.Session.GetString("Role");
+            if (role != Role.Administrator.ToString())
             {
                 return RedirectToAction("Login", "Auth");
             }   
-            
+            ViewBag.User = "Test";
             ViewData["Title"] = "Users";
             return View();
         }

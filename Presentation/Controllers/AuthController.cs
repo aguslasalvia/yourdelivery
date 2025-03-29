@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Core.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 using DTO.User;
@@ -9,10 +10,10 @@ namespace Presentation.Controllers
     public class AuthController() : Controller{
 
         [HttpGet]
-
         public IActionResult Login()
         {
             ViewData["Title"] = "Login";
+            HttpContext.Session.Clear();
             return View();
         }
 
@@ -22,11 +23,12 @@ namespace Presentation.Controllers
             // TODO: Search the user on the DB
             Console.WriteLine(userLogin.Password);
             Console.WriteLine(userLogin.Email);
-            
+            HttpContext.Session.SetString("Role",Role.Administrator.ToString());
             return RedirectToAction("Dashboard","User");
         }
         public IActionResult Logout()
-        {
+        {   
+            HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
 
