@@ -1,0 +1,18 @@
+@using Core.Enums
+<div class="mt-5 d-flex flex-row">
+    <section>
+        <img src="/assets/avatarPlaceholder.png" alt="Foto del usuario" class="rounded-circle img-fluid w-25">
+        <h1 class="mt-2 mb-0 fs-2">Juan Perez</h1>
+        <p class="mb-0">juanperez@gmail.com</p>
+        <p class="mb-0">+598 99 266 444</p>
+        <p class="mb-0">5.575.575-5</p>
+        <p class="mb-0">06/07/1989</p>
+    </section>
+    <section>
+        <button class="btn btn-primary mb-2 w-100">Editar perfil</button>
+        <br/>
+        @if(Context.Session.GetString("Role") == "Administrator") {
+            <button class="btn btn-danger w-100">Eliminar perfil</button>
+        }
+    </section>
+</div>

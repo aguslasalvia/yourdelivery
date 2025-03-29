@@ -79,7 +79,7 @@ span {
 .btn-primary {
 	background-color: #f8810d !important;
 	border-color: #f8810d !important;
-	border-radius: 10px !important;
+	border-radius: .25rem !important;
 }
 
 

@@ -16,8 +16,6 @@ namespace Presentation.Controllers
 
             return View();
         }
-
-
         
         [HttpGet]
         public IActionResult Users()
@@ -26,6 +24,10 @@ namespace Presentation.Controllers
             if (role != Role.Administrator.ToString())
             {
                 return RedirectToAction("Login", "Auth");
+                /// TODO: que en vez de redireccionar al login muestre un vista
+                /// TODO: que le informe al usuario que no tiene permisos suficientes
+                /// TODO: para acceder a esa página. Siento que sería una mejor UX que
+                /// TODO: redirigirlo al login directamente
             }   
             ViewBag.User = "Test";
             ViewData["Title"] = "Users";
@@ -33,7 +35,18 @@ namespace Presentation.Controllers
         }
 
         
+        [HttpGet]
+        public IActionResult Profile(string email)
+        {
+            var role = HttpContext.Session.GetString("Role");
+            var sessionEmail = HttpContext.Session.GetString("Email");
 
+            if (role != Role.Administrator.ToString() && sessionEmail != email)
+                return RedirectToAction("Index", "Error", new { error = "No tenés privilegios para acceder a esta página" });
+            
+            return View();
+        }
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
