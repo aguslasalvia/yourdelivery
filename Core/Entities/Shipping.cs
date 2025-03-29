@@ -11,12 +11,12 @@ namespace Core.Entities
         
         public User Client { get; set; } 
 
-        public Role State { get; set; } 
+        public ShippingState State { get; set; } 
 
         
         public Shipping() { }
          
-        public Shipping(int id, int tracking, float weight, User employee, User client, Role state)
+        public Shipping(int id, int tracking, float weight, User employee, User client, ShippingState state)
         {
             ID = id;
             Tracking = tracking;
