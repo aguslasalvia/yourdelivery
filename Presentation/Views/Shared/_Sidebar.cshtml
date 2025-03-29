@@ -14,10 +14,10 @@
 		</li>
 		
 		@* Admin nav options *@
-		@if (ViewBag.User.Role == Role.Administrator)
+		@if (Context.Session.GetString("Role") == Role.Administrator.ToString())
 		{
 			<li class="nav-item">
-				<a title="Users" href="@Url.Action("Index", "Home")" class="nav-link text-white">
+				<a title="Users" href="@Url.Action("Users", "User")" class="nav-link text-white">
 					<i class="bi bi-people"></i>
 				</a>
 			</li>
@@ -71,3 +71,5 @@
 		</a>
 	</div>
 </div>
+
+
