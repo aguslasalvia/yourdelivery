@@ -1,33 +1,73 @@
+@using Core.Enums
 @* <button class="btn btn-primary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar"> *@
 @*     ☰ Menú *@
 @* </button> *@
 
-<div id="sidebar" class="collapse d-md-block bg-third text-white vh-100 p-3" style="width: 210px;">
-    <a href="/" class="text-white text-decoration-none d-flex align-items-center mb-3">
-        <span class="fs-5">Welcome @ViewBag.User</span>
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column">
-        <li class="nav-item">
-            <a href="@Url.Action("Index", "Home")" class="nav-link text-white">
-                <i class="bi bi-house-door"></i> Inicio
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="@Url.Action("Profile", "User")" class="nav-link text-white">
-                <i class="bi bi-person"></i> Perfil
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="@Url.Action("Settings", "User")" class="nav-link text-white">
-                <i class="bi bi-gear"></i> Configuración
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="@Url.Action("Logout", "Auth")" class="nav-link text-white">
-                <i class="bi bi-box-arrow-right"></i> Cerrar sesión
-            </a>
-        </li>
-    </ul>
-</div>
+<div id="sidebar" class="collapse d-md-block bg-third text-white vh-100 p-2" style="width: 80px !important;">
+	@* <hr> *@
+	<ul class="nav nav-pills flex-column align-items-center justify-content-center">
+		
+		<li class="nav-item">
+			<a title="Home" href="@Url.Action("Index", "Home")" class="nav-link text-white">
+				<i class="bi bi-house-door"></i>
+			</a>
+		</li>
+		
+		@* Admin nav options *@
+		@if (ViewBag.User.Role == Role.Administrator)
+		{
+			<li class="nav-item">
+				<a title="Users" href="@Url.Action("Index", "Home")" class="nav-link text-white">
+					<i class="bi bi-people"></i>
+				</a>
+			</li>
+		
+		}
 
+		<li class="nav-item">
+			<a title="New Shippment" href="@Url.Action("Profile", "User")" class="nav-link text-white">
+				<i class="bi bi-truck"></i>	
+			</a>
+		</li>
+
+
+
+
+		<li class="nav-item">
+			<a title="End Shippment" href="@Url.Action("Profile", "User")" class="nav-link text-white">
+				<i class="bi bi-truck-flatbed"></i>
+			</a>
+		</li>
+
+		<li class="nav-item">
+			<a title="Add Comment" href="@Url.Action("Profile", "User")" class="nav-link text-white">
+				<i class="bi bi-chat-left-dots"></i>
+			</a>
+		</li>
+		
+
+		
+		<li class="nav-item">
+			<a title="Tracking Package" href="@Url.Action("Profile", "User")" class="nav-link text-white">
+				<i class="bi bi-geo-alt"></i>
+			</a>
+		</li>
+		
+		<li class="nav-item">
+			<a title="Settings" href="@Url.Action("Settings", "User")" class="nav-link text-white">
+				<i class="bi bi-gear"></i>
+			</a>
+		</li>
+
+
+
+
+	</ul>
+
+	<div id="logout" class="w-100 mx-2 p-1 mt-5 position-absolute bottom-0">
+		@* <hr /> *@
+		<a title="Log Out" href="@Url.Action("Logout", "Auth")" class="nav-link text-white">
+			<i class="bi bi-box-arrow-right"></i>
+		</a>
+	</div>
+</div>
