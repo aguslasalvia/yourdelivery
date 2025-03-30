@@ -13,6 +13,10 @@ th{
     border-color: var(--secondary-color) !important;
 }
 
+th>a{
+    width: 80px !important;
+}
+
 
 
 tbody>tr{
