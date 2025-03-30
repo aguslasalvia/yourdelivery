@@ -1,0 +1,16 @@
+﻿img{
+    width:450px;
+}
+
+h1,h2{
+    color:var(--secondary-color);
+}
+
+
+.process{
+    color:var(--primary-color);
+}
+
+.finish{
+    color:green;
+}
