@@ -77,9 +77,11 @@ span {
 }
 
 .btn-primary {
-	background-color: var(--primary-color) !important;
-	border-color: var(--primary-color) !important;
-	border-radius: 10px !important;
+
+	background-color: #f8810d !important;
+	border-color: #f8810d !important;
+	border-radius: .25rem !important;
+
 }
 
 .btn-secondary {

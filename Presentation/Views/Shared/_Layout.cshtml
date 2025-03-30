@@ -21,7 +21,7 @@
 	</main>
 </div>
 
-@if (ViewBag.User == null)
+@if (Context.Session.GetString("Email") == null)
 	{
 		<footer class="footer text-muted text-center ">
 			<div class="container bg-secondary">
