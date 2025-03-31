@@ -37,11 +37,11 @@ namespace Presentation
                 try
                 {
                     dbContext.Database.EnsureCreated(); // Verifica si la BD existe, si no la crea
-                    Console.WriteLine("✅ Conexión exitosa a SQL Server.");
+                    Console.WriteLine("✅ Database Connected Successfully ✅");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"❌ Error de conexión: {ex.Message}");
+                    Console.WriteLine($"❌ Error Connecting to Databases: {ex.Message}");
                 }
             }
 
