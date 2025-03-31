@@ -1,0 +1,25 @@
+﻿
+<table class="custom-table table w-100 mt-5">
+    <thead>
+    <tr>
+        <th>Full Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        
+        @* This is a header for the button functionality *@
+        <th class=""><a class="btn btn-success" href="~/User/Profile?email="><i class="bi bi-person-plus"></i></a></th>
+    </tr>
+    </thead>
+    <tbody class="" >
+    @for(var i = 0; i < 10; i++)
+    {
+        <tr class="">
+            <td>Pepe @i</td>
+            <td>Phone @i</td>
+            <td>Email @i</td>
+
+            <td><a class="btn btn-secondary" href="~/User/Profile?email="><i class="bi bi-info-square"></i></a></td>
+        </tr>
+    }
+    </tbody>
+</table>
