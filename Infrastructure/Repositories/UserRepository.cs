@@ -37,12 +37,21 @@ public class UserRepository:IUserRepository
 
     public User? GetByEmail(string email)
     {
+        email = email.Trim().ToLower();
         var user = _context.Users.FirstOrDefault(u => u.Email == email);
+        Console.WriteLine(user);
+        return user;
+    }
+
+    public User? GetByEmailAndPassword(string username, string password)
+    {
+        var user = _context.Users.FirstOrDefault(u => u.Email == username && u.Password == password);
         return user;
     }
 
     public IEnumerable<User> GetAll()
     {
-        return _context.Users;
+        var users = _context.Users.ToList();
+        return users;
     }
 }
