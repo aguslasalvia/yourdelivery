@@ -13,13 +13,13 @@ namespace Presentation
             builder.Services.AddSession();
 
             // Connection to SQL
-            builder.Services.AddDbContext<DbContext, AppDbContext>(
+            builder.Services.AddDbContext< AppDbContext>(
                 options => options.UseSqlServer(
                     builder.Configuration.GetConnectionString("StringConnection")
                 )
             );
 
-            // builder.Services.AddScoped(typeof(IShippingRepository), typeof(ShippingRepository));
+            builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 
 
 
