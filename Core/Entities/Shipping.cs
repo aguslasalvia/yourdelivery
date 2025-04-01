@@ -3,7 +3,7 @@
 namespace Core.Entities
 {
     public  class Shipping {
-        public int ID { get; set; } 
+        public int ID { get; private set; } 
         public int Tracking { get; set; } 
         public float Weight { get; set; }
 
