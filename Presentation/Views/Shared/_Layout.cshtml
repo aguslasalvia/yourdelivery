@@ -11,7 +11,7 @@
 </head>
 
 <body>
-@if (@Context.Session.GetString("Role") != null)
+@if (@Context.Session.GetString("User") != null)
 {
 	Html.RenderPartialAsync("_Sidebar");
 }
@@ -21,7 +21,7 @@
 	</main>
 </div>
 
-@if (Context.Session.GetString("Email") == null)
+@if (Context.Session.GetString("User") == null)
 	{
 		<footer class="footer text-muted text-center ">
 			<div class="container bg-secondary">

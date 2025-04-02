@@ -1,7 +1,7 @@
 using System.Diagnostics;
-using Core.Entities;
 using Core.Enums;
 using Core.Interfaces;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 using DTO.User;
@@ -23,7 +23,6 @@ namespace Presentation.Controllers
         {
             ViewData["Title"] = "Login";
             HttpContext.Session.Clear();
-
             return View();
         }
 
@@ -32,13 +31,11 @@ namespace Presentation.Controllers
         {
             
             var user = _userRepository.GetByEmailAndPassword(userLogin.Email, userLogin.Password);
-
             if (user != null)
             {
-                Console.WriteLine("Email: " + user?.Email);
-                Console.WriteLine("PWD: " + user?.Password);
-                HttpContext.Session.SetString("Role",Enum.GetName(typeof(Role), user.Role));
-                HttpContext.Session.SetString("Email",userLogin.Email);
+                HttpContext.Session.SetString("User", JsonSerializer.Serialize(user));
+                HttpContext.Session.SetString("Email",user.Email);
+                HttpContext.Session.SetString("Role",Enum.GetName(user.Role));
                 return RedirectToAction("Dashboard","User");
             }
             

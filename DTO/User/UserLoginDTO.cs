@@ -1,4 +1,8 @@
 
 namespace DTO.User;
 
-public record LoginUserDTO( string Email, string Password );
+public class LoginUserDTO
+{
+    public string Email { get; set; }
+    public string Password { get; set; }
+}

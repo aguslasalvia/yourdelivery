@@ -1,3 +1,4 @@
+@using System.Text.Json
 @using Core.Enums
 @* <button class="btn btn-primary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar"> *@
 @*     ☰ Menú *@
@@ -25,7 +26,7 @@
 		}
 
 		<li class="nav-item">
-			<a title="New Shippment" href="@Url.Action("Profile", "User")" class="nav-link text-white">
+			<a title="New Shippment" href="@Url.Action($"Profile", "User")" class="nav-link text-white">
 				<i class="bi bi-truck"></i>	
 			</a>
 		</li>
@@ -54,7 +55,7 @@
 		</li>
 		
 		<li class="nav-item">
-			<a title="Profile" href="@Url.Action("Profile", "User")" class="nav-link text-white">
+			<a title="Profile" href="@Url.Action("Profile", "User",new{email = Context.Session.GetString("Email")})" class="nav-link text-white">
 				<i class="bi bi-person"></i>
 			</a>
 		</li>

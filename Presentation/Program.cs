@@ -13,7 +13,7 @@ namespace Presentation
             builder.Services.AddSession();
 
             // Connection to SQL
-            builder.Services.AddDbContext< AppDbContext>(
+            builder.Services.AddDbContext<AppDbContext>(
                 options => options.UseSqlServer(
                     builder.Configuration.GetConnectionString("StringConnection")
                 )
@@ -29,21 +29,7 @@ namespace Presentation
             var app = builder.Build();
             
             app.UseSession();
-
-
-            using (var scope = app.Services.CreateScope())
-            {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                try
-                {
-                    dbContext.Database.EnsureCreated(); // Verifica si la BD existe, si no la crea
-                    Console.WriteLine("✅ Database Connected Successfully ✅");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"❌ Error Connecting to Databases: {ex.Message}");
-                }
-            }
+            
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

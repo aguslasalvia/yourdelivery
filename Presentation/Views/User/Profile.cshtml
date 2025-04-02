@@ -1,4 +1,5 @@
 @using Core.Enums
+@using DTO.User
 
 <section class="mt-5 d-flex flex-column justify-content-center">
     <div>
@@ -10,8 +11,8 @@
         
         <div class="d-flex flex-column justify-content-center align-content-center gap-2  mt-3">
         <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
-            <input class="mb-0 form-control" value="Juan Perez" />
-            <input class="mb-0 form-control" value="juanperez@gmail.com"/>
+            <input class="mb-0 form-control" value="@ViewBag.User.Name @ViewBag.User.Lastname" />
+            <input class="mb-0 form-control" value="@ViewBag.User.Email"/>
         </div>
         <div class=" input-group d-flex flex-row justify-content-center align-content-center gap-4">
             <input class="mb-0 form-control" value="+598 99 266 444"/>
