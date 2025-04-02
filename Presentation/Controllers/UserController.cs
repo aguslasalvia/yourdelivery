@@ -36,14 +36,13 @@ namespace Presentation.Controllers
             
             if (Enum.GetName(role) != Role.Administrator.ToString())
             {
-                return RedirectToAction("Login", "Auth");
-                /// TODO: que en vez de redireccionar al login muestre un vista
-                /// TODO: que le informe al usuario que no tiene permisos suficientes
-                /// TODO: para acceder a esa página. Siento que sería una mejor UX que
-                /// TODO: redirigirlo al login directamente
+                
+                return RedirectToAction("Index", "Error", new { error = "You lack of privileges to enter this page" });
             }   
             ViewBag.User = "Test";
             ViewData["Title"] = "Users";
+            var users = _userRepository.GetAll().ToList();
+            ViewBag.Users = users;
             return View();
         }
 
