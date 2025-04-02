@@ -14,22 +14,25 @@ namespace Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder){
             
-            modelBuilder.Entity<User>().HasKey(user => user.Email);
+            modelBuilder.Entity<User>().HasKey(user => user.Id);
             
-            modelBuilder.Entity<Agency>().HasKey(agency => agency.Name);
-            
+            modelBuilder.Entity<Agency>().HasKey(agency => agency.Id);
+
+            modelBuilder.Entity<Shipping>().HasKey(shipping => shipping.Id);
             
             modelBuilder.Entity<Shipping>()
                 .HasOne(s => s.Employee)
                 .WithMany()
-                .HasForeignKey("EmployeeEmail")
-                .OnDelete(DeleteBehavior.NoAction); 
+                .OnDelete(DeleteBehavior.NoAction)
+                .HasForeignKey("EmployeeId");
+                
+                
 
             modelBuilder.Entity<Shipping>()
                 .HasOne(s => s.Client)
                 .WithMany()
-                .HasForeignKey("ClientEmail")
-                .OnDelete(DeleteBehavior.Cascade);      
+                .HasForeignKey("ClientId")
+                .OnDelete(DeleteBehavior.NoAction);      
 
             base.OnModelCreating(modelBuilder);
         }

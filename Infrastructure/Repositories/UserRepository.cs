@@ -43,9 +43,10 @@ public class UserRepository:IUserRepository
         return user;
     }
 
-    public User? GetByEmailAndPassword(string username, string password)
+    public User? GetByEmailAndPassword(string email, string password)
     {
-        var user = _context.Users.FirstOrDefault(u => u.Email == username && u.Password == password);
+        
+        var user = _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
         return user;
     }
 

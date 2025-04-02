@@ -3,7 +3,7 @@
 namespace Core.Entities
 {
     public  class Shipping {
-        public int ID { get; private set; } 
+        public int Id { get; private set; } 
         public int Tracking { get; set; } 
         public float Weight { get; set; }
 
@@ -18,7 +18,7 @@ namespace Core.Entities
          
         public Shipping(int id, int tracking, float weight, User employee, User client, ShippingState state)
         {
-            ID = id;
+            Id = id;
             Tracking = tracking;
             Weight = weight; 
             Employee = employee;
@@ -27,7 +27,7 @@ namespace Core.Entities
         }
         public override string ToString()
         {
-            return $"{ID} - {Tracking} - {State}";
+            return $"{Id} - {Tracking} - {State}";
         }
     }
 }
