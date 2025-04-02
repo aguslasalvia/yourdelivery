@@ -12,10 +12,12 @@ namespace Core.Entities
         public DateOnly Birth { get;  set; }
         public string Password { get;  set; }
         public Role Role { get;  set; }
+        
+        public Gender Gender { get;  set; }
 
         protected User() { } 
 
-        public User(string name, string lastname, string phone, DateOnly birth, string email, string password, Role role)
+        public User(string name, string lastname, string phone, DateOnly birth, string email, string password, Role role,Gender gender)
         {
             Name = name;
             Lastname = lastname;
@@ -24,6 +26,7 @@ namespace Core.Entities
             Birth = birth;
             Password = password;
             Role = role;
+            Gender = gender;
         }
     }
 }
