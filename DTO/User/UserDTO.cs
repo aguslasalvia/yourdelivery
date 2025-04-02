@@ -2,7 +2,7 @@ using Core.Enums;
 
 namespace DTO.User;
 
-public record UserDTO
+public class UserDTO
 {
     public int Id { get; set; }
     public string Email { get; set; }
