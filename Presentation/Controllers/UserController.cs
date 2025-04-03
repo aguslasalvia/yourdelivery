@@ -1,9 +1,8 @@
 using System.Diagnostics;
 using System.Text.Json;
 using Core.Enums;
-using Core.Entities;
 using Core.Interfaces;
-using DTO.User;
+using DTO.Users;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 
@@ -32,7 +31,7 @@ namespace Presentation.Controllers
         public IActionResult Users()
         {
             
-            var role = JsonSerializer.Deserialize<UserDTO>(HttpContext.Session.GetString("User")).Role;
+            var role = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")).Role;
             
             if (Enum.GetName(role) != Role.Administrator.ToString())
             {
@@ -51,7 +50,7 @@ namespace Presentation.Controllers
         public IActionResult Profile(string email)
         {
            Console.WriteLine(email);
-            var user = JsonSerializer.Deserialize<UserDTO>(HttpContext.Session.GetString("User")); 
+            var user = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")); 
             
             if (Enum.GetName(user.Role) != Role.Administrator.ToString() && user.Email != email )
                 return RedirectToAction("Index", "Error", new { error = "You lack of privileges to enter this page" });
