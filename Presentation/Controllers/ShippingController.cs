@@ -7,9 +7,9 @@ namespace Presentation.Controllers
     public class ShippingController() : Controller
     {
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult NewShipping()
         {
-            ViewData["Title"] = "Shipping";
+            ViewData["Title"] = "New Shipping";
             return View();
         }
 

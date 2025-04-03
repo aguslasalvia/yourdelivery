@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Text.Json;
+using Application.Interfaces;
 using Core.Enums;
 using Core.Interfaces;
 using DTO.Users;
@@ -11,11 +12,13 @@ namespace Presentation.Controllers
 {
     public class UserController: Controller{
         
-        private readonly IUserRepository _userRepository;
+        private readonly IUserGetAllCase _userGetAll;
+        private readonly IUserGetByEmail _userGetByEmail;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserGetAllCase userGetAll,IUserGetByEmail userGetByEmail)
         {
-            _userRepository = userRepository;
+            _userGetByEmail = userGetByEmail;
+            _userGetAll = userGetAll;
         }
 
         [HttpGet]
@@ -40,7 +43,7 @@ namespace Presentation.Controllers
             }   
             ViewBag.User = "Test";
             ViewData["Title"] = "Users";
-            var users = _userRepository.GetAll().ToList();
+            var users = _userGetAll.Execute().ToList();
             ViewBag.Users = users;
             return View();
         }
@@ -58,7 +61,7 @@ namespace Presentation.Controllers
             if (user.Email == email)
                 ViewBag.User = user;
             else
-                ViewBag.User = _userRepository.GetByEmail(email);
+                ViewBag.User = _userGetByEmail.Execute(email);
             
             
             return View();
