@@ -1,4 +1,4 @@
-
+CREATE DATABASE ObligatorioP3;
 USE ObligatorioP3;
 GO
 

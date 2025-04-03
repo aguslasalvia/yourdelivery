@@ -7,6 +7,19 @@ namespace Presentation.Controllers
     public class ShippingController() : Controller
     {
         [HttpGet]
+        public IActionResult Index()
+        {
+            ViewData["Title"] = "Shipping";
+            return View();
+        }
+
+        // [HttpPost]
+        // public IActionResult Index(int trackingNumber, int weight, string userEmail)
+        // {
+        //     
+        // }
+        
+        [HttpGet]
         public IActionResult Tracking(int? trackingNumber)
         {
             ViewData["Title"] = "Tracking";
