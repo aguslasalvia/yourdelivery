@@ -7,7 +7,6 @@ using DTO.Users;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 
-
 namespace Presentation.Controllers
 {
     public class UserController: Controller{
@@ -41,11 +40,15 @@ namespace Presentation.Controllers
                 
                 return RedirectToAction("Index", "Error", new { error = "You lack of privileges to enter this page" });
             }   
-            ViewBag.User = "Test";
-            ViewData["Title"] = "Users";
+            
             var users = _userGetAll.Execute().ToList();
-            ViewBag.Users = users;
-            return View();
+
+            UsersViewModelUsers model = new UsersViewModelUsers
+            {
+                Users = users
+            };
+            
+            return View(model);
         }
 
         
@@ -57,14 +60,15 @@ namespace Presentation.Controllers
             
             if (Enum.GetName(user.Role) != Role.Administrator.ToString() && user.Email != email )
                 return RedirectToAction("Index", "Error", new { error = "You lack of privileges to enter this page" });
-
-            if (user.Email == email)
-                ViewBag.User = user;
-            else
-                ViewBag.User = _userGetByEmail.Execute(email);
             
+            UsersViewModelProfile model = new UsersViewModelProfile
+            {
+                User = user.Email == email
+                    ? user
+                    : _userGetByEmail.Execute(email)
+            };
             
-            return View();
+            return View(model);
         }
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

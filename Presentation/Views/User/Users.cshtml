@@ -1,4 +1,6 @@
 ﻿@using DTO.Users
+@model UsersViewModelUsers
+
 <table class="custom-table table w-100 mt-5">
     <thead>
     <tr>
@@ -11,7 +13,7 @@
     </tr>
     </thead>
     <tbody class="" >
-    @foreach(var user in ViewBag.Users)
+    @foreach(var user in Model.Users)
     {
         <tr class="">
             <td>@user.Name @user.Lastname</td>
