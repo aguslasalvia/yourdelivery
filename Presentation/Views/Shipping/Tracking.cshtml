@@ -1,5 +1,5 @@
-﻿@using Core.Enums
-@using Microsoft.EntityFrameworkCore.Metadata.Internal
+﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@using Core.Enums
 @model ShippingViewModelTracking
 
 <div class="d-flex flex-column justify-content-center align-items-center flex-column mt-5">
@@ -18,36 +18,29 @@
     </figure>
     
     
-    @if (ViewBag.Shipping != null)
+    @if (Model.TrackingNumber != null)
     {
         <div class="content-container d-flex justify-content-center flex-column">
-        <h2 class="text-center mb-2">Your Package State</h2>        
-        <div class="flex justify-content-center align-content-center text-center gap-3">
-            <p>Tracking Number: @ViewBag.Shipping</p>
-            <p>Client Email: </p>
-            <p>Employee Email: </p>
+            <h2 class="text-center mb-2">Your Package State</h2>        
+            <div class="flex justify-content-center align-content-center text-center gap-3">
+                <p>Tracking Number: @Model.TrackingNumber</p>
+                <p>Client Email: </p>
+                <p>Employee Email: </p>
             
-            @* Change this in the future *@
-            @if (ViewBag.State == ShippingState.OnProcess)
-            {
-                <p class="btn btn-secondary">@ViewBag.State</p>
-            }
-            else if(ViewBag.State == ShippingState.Finished)
-            {   
-                <p class="btn btn-success"> @ViewBag.State</p>
-
-            }
-            else
-            {
-                <p class="btn btn-danger">Unknown</p>
-
-            }
-            
-        </div>
+                @* Change this in the future *@
+                @if (ViewBag.State == ShippingState.OnProcess)
+                {
+                    <p class="btn btn-secondary">@Model.State</p>
+                }
+                else if (ViewBag.State == ShippingState.Finished)
+                {   
+                    <p class="btn btn-success"> @Model.State</p>
+                }
+                else
+                {
+                    <p class="btn btn-danger">Unknown</p> 
+                }
+            </div>
         </div>
     }
-
-
-
-
 </div>
