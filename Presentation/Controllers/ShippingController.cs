@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Core.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 
@@ -22,10 +23,12 @@ namespace Presentation.Controllers
         [HttpGet]
         public IActionResult Tracking(int? trackingNumber)
         {
-            ViewData["Title"] = "Tracking";
-            ViewBag.Shipping = trackingNumber;
-            ViewBag.State = null;
-            return View();
+            ShippingViewModelTracking model = new ShippingViewModelTracking{
+                TrackingNumber = trackingNumber,
+                State = null
+            };
+            
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
