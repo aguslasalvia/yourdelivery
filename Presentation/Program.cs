@@ -22,7 +22,7 @@ namespace Presentation
             );
 
             builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
-            
+            builder.Services.AddScoped(typeof(IShippingRepository), typeof(ShippingRepository));
             builder.Services.AddScoped(typeof(IUserLoginCase), typeof(UserLoginCase));
             builder.Services.AddScoped(typeof(IUserGetAllCase), typeof(UserGetAllCase));
             builder.Services.AddScoped(typeof(IUserGetByEmail), typeof(UserGetByEmail));
