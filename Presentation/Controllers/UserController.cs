@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Text.Json;
 using Application.Interfaces;
+using Core.Entities;
 using Core.Enums;
 using Core.Interfaces;
 using DTO.Users;
@@ -75,6 +76,23 @@ namespace Presentation.Controllers
             
             return View(model);
         }
+
+        [HttpDelete]
+        public IActionResult Delete(string email)
+        {
+            UserDto user = _userGetByEmail.Execute(email);
+            // TODO: logic goes here
+            return RedirectToAction("Users");
+        }
+        
+        [HttpPatch]
+        public IActionResult Update(string email)
+        {
+            UserDto user = _userGetByEmail.Execute(email);
+            // TODO: logic goes here
+            return RedirectToAction("Users");
+        }
+
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
