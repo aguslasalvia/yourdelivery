@@ -28,11 +28,16 @@ public class UserRepository:IUserRepository
         return user;
     }
 
-    public User Delete(User user)
+    public void Delete(User user)
     {
-        _context.Entry(user).State = EntityState.Deleted;
+        User u = _context.Users.FirstOrDefault(u => u.Email == user.Email);
+        if (u == null)
+            throw new Exception("User not found");
+        
+        _context.Users.Remove(u);
         _context.SaveChanges();
-        return user;
+        // Not returning anything because I think it's better
+        // not to return a user we have already deleted :)
     }
 
     public User? GetByEmail(string email)

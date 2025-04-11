@@ -3,7 +3,6 @@
 @model UsersViewModelProfile
 
 <section class="mt-5 d-flex flex-column justify-content-center">
-    <form>
         <div>
             <figure class="d-flex align-content-center justify-content-center">
                 @if (Enum.GetName(Model.User.Gender) == Gender.Female.ToString())
@@ -39,11 +38,21 @@
                 <i class="bi bi-pencil-square"></i>
             </button>
             <br/>
-            @if(Context.Session.GetString("Role") == Role.Administrator.ToString()) { 
-                <button class="btn btn-danger mb-2" title="Delete Profile" action="@Url.Action("Delete","User")">
-                    <i class="bi bi-trash"></i>
-                </button>
+            <form method="post" asp-action="Delete" asp-controller="User">
+                @Html.AntiForgeryToken()
+                @*
+                AntiForgeryToken makes it so that the submit is only valid
+                if it comes from this page. It prevents CSRF attacks.
+                It generates a hidden input field that contains a unique token
+                tied to a specific session that is then later on validated on the server side.
+                *@
+                <input type="hidden" name="email" value="@Model.User.Email" />
+                @if (Context.Session.GetString("Role") == Role.Administrator.ToString())
+                {
+                    <button type="submit" class="btn btn-danger mb-2" title="Delete Profile">
+                        <i class="bi bi-trash"></i>
+                    </button>
                 }
+            </form>
         </div>
-    </form>
 </section>

@@ -14,11 +14,13 @@ namespace Presentation.Controllers
         
         private readonly IUserGetAllCase _userGetAll;
         private readonly IUserGetByEmail _userGetByEmail;
-
-        public UserController(IUserGetAllCase userGetAll,IUserGetByEmail userGetByEmail)
+        private readonly IUserDelete _userDelete;
+        
+        public UserController(IUserGetAllCase userGetAll,IUserGetByEmail userGetByEmail, IUserDelete userDelete)
         {
             _userGetByEmail = userGetByEmail;
             _userGetAll = userGetAll;
+            _userDelete = userDelete;
         }
 
         [HttpGet]
@@ -77,11 +79,28 @@ namespace Presentation.Controllers
             return View(model);
         }
 
-        [HttpDelete]
+        // HTML doesn't have a DELETE HTTP method you can use on submit through a form
+        // so we'd have to use Javascript to do it if we wanted to use [HttpDelete].
+        // While it is possible, it wouldn't let us use and validate the AntiForgeryToken.
+        // I think it's best we keep it as HttpPost (less complexity == less stuff breaking up
+        // and booming up later down the line). Same applies for PATCH.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Delete(string email)
         {
-            UserDto user = _userGetByEmail.Execute(email);
-            // TODO: logic goes here
+            if (string.IsNullOrEmpty(email))
+            {
+                throw new ArgumentException("Email is missing.");
+            }
+
+            UserDto userDto = _userGetByEmail.Execute(email);
+            if (userDto == null)
+            {
+                throw new Exception("User not found.");
+            }
+
+            _userDelete.Execute(userDto);
+
             return RedirectToAction("Users");
         }
         

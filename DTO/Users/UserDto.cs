@@ -27,8 +27,6 @@ public UserDto(User user)
         Birth = user.Birth;
         Role = user.Role;
         Gender = user.Gender;
-        
-
     }
 
     public User toUser()
