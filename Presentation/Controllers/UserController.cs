@@ -15,12 +15,14 @@ namespace Presentation.Controllers
         private readonly IUserGetAllCase _userGetAll;
         private readonly IUserGetByEmail _userGetByEmail;
         private readonly IUserDelete _userDelete;
+        private readonly IUserUpdate _userUpdate;
         
-        public UserController(IUserGetAllCase userGetAll,IUserGetByEmail userGetByEmail, IUserDelete userDelete)
+        public UserController(IUserGetAllCase userGetAll,IUserGetByEmail userGetByEmail, IUserDelete userDelete, IUserUpdate userUpdate)
         {
             _userGetByEmail = userGetByEmail;
             _userGetAll = userGetAll;
             _userDelete = userDelete;
+            _userUpdate = userUpdate;
         }
 
         [HttpGet]
@@ -104,11 +106,24 @@ namespace Presentation.Controllers
             return RedirectToAction("Users");
         }
         
-        [HttpPatch]
-        public IActionResult Update(string email)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(UserDto editedUser)
         {
-            UserDto user = _userGetByEmail.Execute(email);
-            // TODO: logic goes here
+            if (editedUser == null || string.IsNullOrEmpty(editedUser.Email))
+                throw new ArgumentException("Invalid user data.");
+
+            UserDto existingUser = _userGetByEmail.Execute(editedUser.Email);
+            if (existingUser == null)
+                throw new Exception("User not found.");
+
+            existingUser.Name = editedUser.Name;
+            existingUser.Lastname = editedUser.Lastname;
+            existingUser.Phone = editedUser.Phone;
+            existingUser.Birth = editedUser.Birth;
+            existingUser.Gender = editedUser.Gender;
+            
+            _userUpdate.Execute(existingUser);
             return RedirectToAction("Users");
         }
 

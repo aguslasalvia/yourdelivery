@@ -27,6 +27,7 @@ namespace Presentation
             builder.Services.AddScoped(typeof(IUserGetAllCase), typeof(UserGetAllCase));
             builder.Services.AddScoped(typeof(IUserGetByEmail), typeof(UserGetByEmail));
             builder.Services.AddScoped(typeof(IUserDelete), typeof(UserDelete));
+            builder.Services.AddScoped(typeof(IUserUpdate), typeof(UserUpdate));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
