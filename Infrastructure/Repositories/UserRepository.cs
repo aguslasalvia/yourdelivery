@@ -44,20 +44,28 @@ public class UserRepository:IUserRepository
     {
         email = email.Trim().ToLower();
         var user = _context.Users.FirstOrDefault(u => u.Email == email);
+        if (user == null)
+            throw new Exception("User not found");
+        
         Console.WriteLine(user);
         return user;
     }
 
     public User? GetByEmailAndPassword(string email, string password)
     {
-        
         var user = _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+        if (user == null)
+            throw new Exception("User not found");
+
         return user;
     }
 
     public IEnumerable<User> GetAll()
     {
         var users = _context.Users.ToList();
+        if (users == null)
+            throw new Exception("No users have been found");
+
         return users;
     }
 }
