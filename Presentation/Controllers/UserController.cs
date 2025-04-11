@@ -33,7 +33,7 @@ namespace Presentation.Controllers
         public IActionResult Users()
         {
             
-            var role = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")).Role;
+            Role role = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")).Role;
             
             if (Enum.GetName(role) != Role.Administrator.ToString())
             {
@@ -41,7 +41,7 @@ namespace Presentation.Controllers
                 return RedirectToAction("Index", "Error", new { error = "You lack of privileges to enter this page" });
             }   
             
-            var users = _userGetAll.Execute().ToList();
+            List<UserListDto> users = _userGetAll.Execute().ToList();
 
             UsersViewModelUsers model = new UsersViewModelUsers
             {
@@ -56,7 +56,7 @@ namespace Presentation.Controllers
         public IActionResult Profile(string email)
         {
            Console.WriteLine(email);
-            var user = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")); 
+            UserDto user = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")); 
             
             if (Enum.GetName(user.Role) != Role.Administrator.ToString() && user.Email != email )
                 return RedirectToAction("Index", "Error", new { error = "You lack of privileges to enter this page" });
