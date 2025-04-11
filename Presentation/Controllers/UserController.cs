@@ -32,8 +32,10 @@ namespace Presentation.Controllers
         [HttpGet]
         public IActionResult Users()
         {
-            
-            Role role = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")).Role;
+            // Using var rather than ShippingStates as data type in case there isn't a user saved on SessionStorage
+            // If there is no user saved in SessionStorage and it tries to parse the user from JSON to ShippingStates
+            // and we're using a strong type it will blow up. Boom! not working. Not good.
+            var role = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")).Role;
             
             if (Enum.GetName(role) != Role.Administrator.ToString())
             {
@@ -56,7 +58,10 @@ namespace Presentation.Controllers
         public IActionResult Profile(string email)
         {
            Console.WriteLine(email);
-            UserDto user = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")); 
+           // Using var rather than UserDTO as data type in case there isn't a user saved on SessionStorage
+           // If there is no user saved in SessionStorage and it tries to parse the user from JSON to UserDTO
+           // and we're using a strong type it will blow up.
+           var user = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")); 
             
             if (Enum.GetName(user.Role) != Role.Administrator.ToString() && user.Email != email )
                 return RedirectToAction("Index", "Error", new { error = "You lack of privileges to enter this page" });
