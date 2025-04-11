@@ -1,6 +1,7 @@
 using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories;
 
@@ -29,7 +30,7 @@ public class UserRepository:IUserRepository
 
     public User Delete(User user)
     {
-        _context.Users.Remove(user);
+        _context.Entry(user).State = EntityState.Deleted;
         _context.SaveChanges();
         return user;
     }

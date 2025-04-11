@@ -37,8 +37,12 @@
     <div class="d-flex flex-row justify-content-center mt-5 gap-3" >
         <button class="btn btn-primary mb-2" title="Edit Profile"><i class="bi bi-pencil-square"></i></button>
         <br/>
-        @if(Context.Session.GetString("Role") == Role.Administrator.ToString()) {
-            <button class="btn btn-danger mb-2" title="Delete Profile"><i class="bi bi-trash"></i></button>
+        @if(Context.Session.GetString("Role") == Role.Administrator.ToString()) { 
+            <form action="@Url.Action("DeleteUser","User")">
+                <button class="btn btn-danger mb-2" title="Delete Profile">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </form>
         }
     </div>
 </section>
