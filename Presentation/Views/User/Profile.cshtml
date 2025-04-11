@@ -1,10 +1,11 @@
 @using Core.Enums
-@using DTO.User
+@using DTO.Users
+@model UsersViewModelProfile
 
 <section class="mt-5 d-flex flex-column justify-content-center">
     <div>
         <figure class="d-flex align-content-center justify-content-center">
-            @if (Enum.GetName(ViewBag.User.Gender) == Gender.Female.ToString())
+            @if (Enum.GetName(Model.User.Gender) == Gender.Female.ToString())
             {
                 <img src="/assets/womanProfile.png" alt="User Photo">    
             }
@@ -19,8 +20,8 @@
         
         <div class="d-flex flex-column justify-content-center align-content-center gap-2  mt-3">
         <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
-            <input class="mb-0 form-control" value="@ViewBag.User.Name @ViewBag.User.Lastname" />
-            <input class="mb-0 form-control" value="@ViewBag.User.Email"/>
+            <input class="mb-0 form-control" value="@Model.User.Name @Model.User.Lastname" />
+            <input class="mb-0 form-control" value="@Model.User.Email"/>
         </div>
         <div class=" input-group d-flex flex-row justify-content-center align-content-center gap-4">
             <input class="mb-0 form-control" value="+598 99 266 444"/>

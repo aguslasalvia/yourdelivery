@@ -1,22 +1,23 @@
 using System.Diagnostics;
 using System.Text.Json;
+using Application.Interfaces;
 using Core.Enums;
-using Core.Entities;
 using Core.Interfaces;
-using DTO.User;
+using DTO.Users;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
-
 
 namespace Presentation.Controllers
 {
     public class UserController: Controller{
         
-        private readonly IUserRepository _userRepository;
+        private readonly IUserGetAllCase _userGetAll;
+        private readonly IUserGetByEmail _userGetByEmail;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserGetAllCase userGetAll,IUserGetByEmail userGetByEmail)
         {
-            _userRepository = userRepository;
+            _userGetByEmail = userGetByEmail;
+            _userGetAll = userGetAll;
         }
 
         [HttpGet]
@@ -32,19 +33,22 @@ namespace Presentation.Controllers
         public IActionResult Users()
         {
             
-            var role = JsonSerializer.Deserialize<UserDTO>(HttpContext.Session.GetString("User")).Role;
+            var role = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")).Role;
             
             if (Enum.GetName(role) != Role.Administrator.ToString())
             {
-                return RedirectToAction("Login", "Auth");
-                /// TODO: que en vez de redireccionar al login muestre un vista
-                /// TODO: que le informe al usuario que no tiene permisos suficientes
-                /// TODO: para acceder a esa página. Siento que sería una mejor UX que
-                /// TODO: redirigirlo al login directamente
+                
+                return RedirectToAction("Index", "Error", new { error = "You lack of privileges to enter this page" });
             }   
-            ViewBag.User = "Test";
-            ViewData["Title"] = "Users";
-            return View();
+            
+            var users = _userGetAll.Execute().ToList();
+
+            UsersViewModelUsers model = new UsersViewModelUsers
+            {
+                Users = users
+            };
+            
+            return View(model);
         }
 
         
@@ -52,18 +56,19 @@ namespace Presentation.Controllers
         public IActionResult Profile(string email)
         {
            Console.WriteLine(email);
-            var user = JsonSerializer.Deserialize<UserDTO>(HttpContext.Session.GetString("User")); 
+            var user = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")); 
             
             if (Enum.GetName(user.Role) != Role.Administrator.ToString() && user.Email != email )
                 return RedirectToAction("Index", "Error", new { error = "You lack of privileges to enter this page" });
-
-            if (user.Email == email)
-                ViewBag.User = user;
-            else
-                ViewBag.User = _userRepository.GetByEmail(email);
             
+            UsersViewModelProfile model = new UsersViewModelProfile
+            {
+                User = user.Email == email
+                    ? user
+                    : _userGetByEmail.Execute(email)
+            };
             
-            return View();
+            return View(model);
         }
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

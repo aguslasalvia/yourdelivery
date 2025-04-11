@@ -10,8 +10,7 @@ namespace Infrastructure.Persistence
         public DbSet<User> Users { get; set; }
         public DbSet<Agency> Agencies { get; set; }
         public DbSet<Shipping> Shippings { get; set; }
-
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder){
             
             modelBuilder.Entity<User>().HasKey(user => user.Id);
@@ -25,8 +24,6 @@ namespace Infrastructure.Persistence
                 .WithMany()
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasForeignKey("EmployeeId");
-                
-                
 
             modelBuilder.Entity<Shipping>()
                 .HasOne(s => s.Client)

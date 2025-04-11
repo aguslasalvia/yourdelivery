@@ -2,20 +2,23 @@ using System.Diagnostics;
 using Core.Enums;
 using Core.Interfaces;
 using System.Text.Json;
+using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
-using DTO.User;
+using DTO.Users;
+using DTO.Users;
 
 
 namespace Presentation.Controllers
 {
-    public class AuthController : Controller{
-        
-        private readonly  IUserRepository _userRepository;
+    public class AuthController : Controller
+    {
 
-        public AuthController(IUserRepository userRepository)
+        private IUserLoginCase _login;
+
+        public AuthController(IUserLoginCase login)
         {
-            _userRepository = userRepository;
+            _login = login;
         }
 
         [HttpGet]
@@ -27,10 +30,10 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public IActionResult SubmitLogin(LoginUserDTO userLogin)
+        public IActionResult SubmitLogin(UserLoginDto userLogin)
         {
             
-            var user = _userRepository.GetByEmailAndPassword(userLogin.Email, userLogin.Password);
+            var user = _login.Execute(userLogin);
             if (user != null)
             {
                 HttpContext.Session.SetString("User", JsonSerializer.Serialize(user));

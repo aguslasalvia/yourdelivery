@@ -1,7 +1,9 @@
-﻿@using Core.Enums
-@using Microsoft.EntityFrameworkCore.Metadata.Internal
-<div class="d-flex flex-column justify-content-center align-items-center flex-column mt-5 ">
-    <h1 class="w-100 text-center"> Find your package</h1>
+﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@using Core.Enums
+@model ShippingViewModelTracking
+
+<div class="d-flex flex-column justify-content-center align-items-center flex-column mt-5">
+    <h1 class="w-100 text-center">Find your package</h1>
 
     <form class="w-100 align-content-center justify-content-center d-flex">
         <div class="input-group d-flex justify-content-center w-50 align-content-center">
@@ -16,36 +18,29 @@
     </figure>
     
     
-    @if (ViewBag.Shipping != null)
+    @if (Model.TrackingNumber != null)
     {
         <div class="content-container d-flex justify-content-center flex-column">
-        <h2 class="text-center mb-2">Your Package State</h2>        
-        <div class="flex justify-content-center align-content-center text-center gap-3">
-            <p>Tracking Number: @ViewBag.Shipping</p>
-            <p>Client Email: </p>
-            <p>Employee Email: </p>
+            <h2 class="text-center mb-2">Your Package State</h2>        
+            <div class="flex justify-content-center align-content-center text-center gap-3">
+                <p>Tracking Number: @Model.TrackingNumber</p>
+                <p>Client Email: </p>
+                <p>Employee Email: </p>
             
-            @* Change this in the future *@
-            @if (ViewBag.State == ShippingState.OnProcess)
-            {
-                <p class="btn btn-secondary">@ViewBag.State</p>
-            }
-            else if(ViewBag.State == ShippingState.Finished)
-            {   
-                <p class="btn btn-success"> @ViewBag.State</p>
-
-            }
-            else
-            {
-                <p class="btn btn-danger">Unknown</p>
-
-            }
-            
-        </div>
+                @* Change this in the future *@
+                @if (ViewBag.State == ShippingState.OnProcess)
+                {
+                    <p class="btn btn-secondary">@Model.State</p>
+                }
+                else if (ViewBag.State == ShippingState.Finished)
+                {   
+                    <p class="btn btn-success"> @Model.State</p>
+                }
+                else
+                {
+                    <p class="btn btn-danger">Unknown</p> 
+                }
+            </div>
         </div>
     }
-
-
-
-
 </div>

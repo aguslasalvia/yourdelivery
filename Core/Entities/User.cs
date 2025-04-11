@@ -4,7 +4,7 @@ namespace Core.Entities
 {
     public class User
     {
-        public int Id { get; private set; } 
+        public int Id { get; set; } 
         public string Name { get;  set; }
         public string Lastname { get;  set; }
         public string Phone { get;  set; }
@@ -15,7 +15,7 @@ namespace Core.Entities
         
         public Gender Gender { get;  set; }
 
-        protected User() { } 
+        public User() { } 
 
         public User(string name, string lastname, string phone, DateOnly birth, string email, string password, Role role,Gender gender)
         {
