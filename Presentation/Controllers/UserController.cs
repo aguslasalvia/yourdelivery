@@ -62,10 +62,6 @@ namespace Presentation.Controllers
         [HttpGet]
         public IActionResult Profile(string email)
         {
-           Console.WriteLine(email);
-           // Using var rather than UserDTO as data type in case there isn't a user saved on SessionStorage
-           // If there is no user saved in SessionStorage and it tries to parse the user from JSON to UserDTO
-           // and we're using a strong type it will blow up.
            var role = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")).Role;
            var user = _userGetByEmail.Execute(email);
             
@@ -76,7 +72,7 @@ namespace Presentation.Controllers
             {
                 User = user.Email == email ? user : _userGetByEmail.Execute(email)
             };
-            
+            ViewData["Title"] = "Profile";
             return View(model);
         }
 
