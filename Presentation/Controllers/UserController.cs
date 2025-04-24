@@ -16,13 +16,16 @@ namespace Presentation.Controllers
         private readonly IUserGetByEmail _userGetByEmail;
         private readonly IUserDelete _userDelete;
         private readonly IUserUpdate _userUpdate;
+        private readonly IUserCreate _userCreate;
         
-        public UserController(IUserGetAllCase userGetAll,IUserGetByEmail userGetByEmail, IUserDelete userDelete, IUserUpdate userUpdate)
+        public UserController(IUserGetAllCase userGetAll,IUserGetByEmail userGetByEmail, IUserDelete userDelete, IUserUpdate userUpdate,IUserCreate userCreate)
         {
             _userGetByEmail = userGetByEmail;
             _userGetAll = userGetAll;
             _userDelete = userDelete;
             _userUpdate = userUpdate;
+            _userCreate = userCreate;
+            
         }
 
         [HttpGet]
@@ -107,6 +110,21 @@ namespace Presentation.Controllers
         {
             
             _userUpdate.Execute(editedUser);
+            return RedirectToAction("Users");
+        }
+
+
+        [HttpGet]
+        public IActionResult NewUser()
+        {
+                ViewData["Title"] = "New User";
+                return View();
+        }
+
+        [HttpPost]
+        public IActionResult SubmitNewUser(UserRegistrationDto user)
+        {
+            _userCreate.Execute(user);
             return RedirectToAction("Users");
         }
 

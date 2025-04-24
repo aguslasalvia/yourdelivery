@@ -16,9 +16,10 @@ public class UserLoginCase:IUserLoginCase
 
 
     public UserDto Execute(UserLoginDto userLogin)
-    { User user = _userRepository.GetByEmailAndPassword(userLogin.Email, userLogin.Password);  
-      UserDto? userDto = new UserDto(user);
-      return userDto;
+    { 
+        User user = _userRepository.GetByEmailAndPassword(userLogin.Email, userLogin.Password);  
+        UserDto? userDto = new UserDto(user);
+        return userDto;
     }
     
 }
