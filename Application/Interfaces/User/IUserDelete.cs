@@ -4,5 +4,5 @@ namespace Application.Interfaces;
 
 public interface IUserDelete
 {
-    void Execute(UserDto dto);
+    void Execute(UserProfileDto dto);
 }

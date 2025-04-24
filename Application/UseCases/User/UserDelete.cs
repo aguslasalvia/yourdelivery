@@ -12,7 +12,7 @@ public class UserDelete:IUserDelete
         _userRepository = userRepository;
     }
 
-    public void Execute(UserDto dto)
+    public void Execute(UserProfileDto dto)
     {
         _userRepository.Delete(dto.toUser());
     }

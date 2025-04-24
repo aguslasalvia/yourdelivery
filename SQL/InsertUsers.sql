@@ -1,10 +1,8 @@
-CREATE DATABASE ObligatorioP3;
 USE ObligatorioP3;
 GO
 
--- Agregar la columna Gender
+DELETE FROM Users;
 
--- Insertar los datos con UTF-8 y la columna Gender
 INSERT INTO Users (Name, Lastname, Phone, Birth, Email, Password, Role, Gender)
 VALUES
     ('Juan', 'Perez', '+59891234567', '1990-05-15', 'juan.perez@gmail.com', 'password123', 0, 1),
@@ -20,5 +18,4 @@ VALUES
     ('Diego', 'Torres', '+59899012345', '1987-09-22', 'diego.torres@outlook.com', 'cliente444', 2, 1),
     ('Camila', 'Vega', '+59890123456', '1991-04-08', 'camila.vega@gmail.com', 'cliente555', 2, 0);
 
--- Seleccionar los datos de la tabla Users
 SELECT * FROM Users;

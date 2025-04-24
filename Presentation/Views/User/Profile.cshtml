@@ -5,9 +5,10 @@
 <section class="mt-5 d-flex flex-column justify-content-center">
     <div>
         <figure class="d-flex align-content-center justify-content-center">
+            
             @if (Enum.GetName(Model.User.Gender) == Gender.Female.ToString())
             {
-                <img src="/assets/womanProfile.png" alt="User Photo">    
+                <img src="/assets/womanProfile.png" alt="User Photo">
             }
             else
             {
@@ -19,15 +20,25 @@
             @Html.AntiForgeryToken()
             <div class="d-flex flex-column justify-content-center align-content-center gap-2 mt-3">
                 <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
-                    <input class="mb-0 form-control" name="Name" value="@Model.User.Name" />
-                    <input class="mb-0 form-control" name="Lastname" value="@Model.User.Lastname" />
+                    <input class="mb-0 form-control" name="Id" value="@Model.User.Id" readonly />
+
+                    
+                    <input class="mb-0 form-control" name="Password" value="@Model.User.Password"/>
+                    <input class="mb-0 form-control" name="Name" value="@Model.User.Name"/>
+                    <input class="mb-0 form-control" name="Lastname" value="@Model.User.Lastname"/>
                 </div>
                 <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
                     <input class="mb-0 form-control" name="Email" value="@Model.User.Email" />
-                    <input class="mb-0 form-control" name="PhoneNumber" value="@Model.User.Phone" />
+                    <input class="mb-0 form-control" name="Phone" value="@Model.User.Phone" />
                 </div>
                 <div class="input-group d-flex justify-content-center align-content-center gap-4">
-                    <input type="date" class="mb-0 form-control" name="BirthDate" value="@Model.User.Birth.ToString("YYYY-MM-DD")" />
+                    <input type="date" class="mb-0 form-control" name="Birth" value="@Model.User.Birth.ToString("yyyy-MM-dd")" />
+                    
+                    <select class="mb-0 form-select">
+                        <option selected="@Model.User.Role == 1" value="@Role.Administrator">Administrator</option>
+                        <option selected="@Model.User.Role == 2" value="@Role.Employee">Employee</option>
+                        <option selected="@Model.User.Role == 3" value="@Role.Client">Client</option>
+                    </select>
                 </div>
                 <div class="d-flex justify-content-center mt-3">
                     <button type="submit" class="btn btn-success" title="Save Changes">

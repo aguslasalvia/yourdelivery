@@ -66,16 +66,15 @@ namespace Presentation.Controllers
            // Using var rather than UserDTO as data type in case there isn't a user saved on SessionStorage
            // If there is no user saved in SessionStorage and it tries to parse the user from JSON to UserDTO
            // and we're using a strong type it will blow up.
-           var user = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")); 
+           var role = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")).Role;
+           var user = _userGetByEmail.Execute(email);
             
-            if (Enum.GetName(user.Role) != Role.Administrator.ToString() && user.Email != email )
+            if (Enum.GetName(role) != Role.Administrator.ToString() && user.Email != email )
                 return RedirectToAction("Index", "Error", new { error = "You lack of privileges to enter this page" });
             
             UsersViewModelProfile model = new UsersViewModelProfile
             {
-                User = user.Email == email
-                    ? user
-                    : _userGetByEmail.Execute(email)
+                User = user.Email == email ? user : _userGetByEmail.Execute(email)
             };
             
             return View(model);
@@ -95,7 +94,7 @@ namespace Presentation.Controllers
                 throw new ArgumentException("Email is missing.");
             }
 
-            UserDto userDto = _userGetByEmail.Execute(email);
+            UserProfileDto userDto = _userGetByEmail.Execute(email);
             if (userDto == null)
             {
                 throw new Exception("User not found.");
@@ -108,22 +107,10 @@ namespace Presentation.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(UserDto editedUser)
+        public IActionResult Update(UserProfileDto editedUser)
         {
-            if (editedUser == null || string.IsNullOrEmpty(editedUser.Email))
-                throw new ArgumentException("Invalid user data.");
-
-            UserDto existingUser = _userGetByEmail.Execute(editedUser.Email);
-            if (existingUser == null)
-                throw new Exception("User not found.");
-
-            existingUser.Name = editedUser.Name;
-            existingUser.Lastname = editedUser.Lastname;
-            existingUser.Phone = editedUser.Phone;
-            existingUser.Birth = editedUser.Birth;
-            existingUser.Gender = editedUser.Gender;
             
-            _userUpdate.Execute(existingUser);
+            _userUpdate.Execute(editedUser);
             return RedirectToAction("Users");
         }
 
