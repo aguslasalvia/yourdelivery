@@ -2,7 +2,6 @@ using Application.Interfaces;
 using Core.Interfaces;
 using Core.Entities;
 using DTO.Users;
-
 namespace Application.UseCases;
 
 public class UserGetByEmail:IUserGetByEmail
@@ -14,10 +13,10 @@ public class UserGetByEmail:IUserGetByEmail
         _userRepository = userRepository;
     }
 
-    public UserDto Execute(string email)
+    public UserProfileDto Execute(string email)
     {
         User user = _userRepository.GetByEmail(email);
-        UserDto userDto = new UserDto(user);
+        UserProfileDto userDto = new UserProfileDto(user);
         return userDto;
     }
 }

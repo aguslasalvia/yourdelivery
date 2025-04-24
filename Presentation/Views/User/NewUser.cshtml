@@ -1,0 +1,61 @@
+@using Core.Enums
+
+<section class="mt-5 d-flex flex-column justify-content-center">
+    <div>
+        <figure class="d-flex align-content-center justify-content-center">
+            
+            @* TODO: find a generic user sign up img*@
+            
+        </figure>
+
+        <form asp-action="NewUser" asp-controller="User" method="post">
+            @Html.AntiForgeryToken()
+            <div class="d-flex flex-column justify-content-center align-content-center gap-2 mt-3">
+                <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
+                    
+                    <input class="mb-0 form-control" type="hidden" name="Id" value="" readonly/>
+                    
+                    <input class="mb-0 form-control" name="Email" placeholder="Email" value=""/>
+
+                    <input class="mb-0 form-control" type="password" name="Password" placeholder="Password" value=""/>
+
+
+
+                </div>
+
+                <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
+                    <input class="mb-0 form-control" name="Name" placeholder="Name" value=""/>
+                    <input class="mb-0 form-control" name="Lastname" placeholder="Lastname" value=""/>
+
+                </div>
+               
+                <div class="input-group d-flex justify-content-center align-content-center gap-4">
+                   
+                    
+                    <select class="mb-0 form-select">
+                        <option selected="selected" value="">Choose a role</option>
+                        <option value="@Role.Administrator">Administrator</option>
+                        <option value="@Role.Employee">Employee</option>
+                        <option value="@Role.Client">Client</option>
+                    </select>
+                    
+                    <select class="mb-0 form-select">
+                        <option selected="selected" value="">Choose a gender</option>
+                        <option value="@Gender.Female">Female</option>
+                        <option value="@Gender.Male">Male</option>
+                    </select>
+                </div>
+                <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
+                    <input class="mb-0 form-control" name="Phone" value="" placeholder="Phone"/>
+                    <input type="date" class="mb-0 form-control" name="Birth" value=""  />
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <button type="submit" class="btn btn-success" title="Save Changes">
+                        <i class="bi bi-check-circle"></i> Save
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</section>

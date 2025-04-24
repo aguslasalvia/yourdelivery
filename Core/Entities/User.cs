@@ -1,5 +1,4 @@
 ﻿using Core.Enums;
-
 namespace Core.Entities
 {
     public class User

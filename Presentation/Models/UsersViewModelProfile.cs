@@ -4,5 +4,5 @@ namespace Presentation.Models;
 
 public class UsersViewModelProfile
 {
-    public UserDto User { get; set; }
+    public UserProfileDto User { get; set; }
 }

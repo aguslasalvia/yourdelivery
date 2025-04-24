@@ -3,5 +3,5 @@ namespace Application.Interfaces;
 
 public interface IUserGetByEmail
 {
-    UserDto Execute(string email);
+    UserProfileDto Execute(string email);
 }

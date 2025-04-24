@@ -6,7 +6,7 @@ namespace Core.Interfaces
     {
         User Add ( User user );
         User Update ( User user );
-        User Delete ( User user );
+        void Delete ( User user );
         User? GetByEmail ( string email );
 
         User? GetByEmailAndPassword ( string email, string password );

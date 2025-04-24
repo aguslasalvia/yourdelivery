@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Text.Json;
 using Application.Interfaces;
+using Core.Entities;
 using Core.Enums;
 using Core.Interfaces;
 using DTO.Users;
@@ -13,11 +14,18 @@ namespace Presentation.Controllers
         
         private readonly IUserGetAllCase _userGetAll;
         private readonly IUserGetByEmail _userGetByEmail;
-
-        public UserController(IUserGetAllCase userGetAll,IUserGetByEmail userGetByEmail)
+        private readonly IUserDelete _userDelete;
+        private readonly IUserUpdate _userUpdate;
+        private readonly IUserCreate _userCreate;
+        
+        public UserController(IUserGetAllCase userGetAll,IUserGetByEmail userGetByEmail, IUserDelete userDelete, IUserUpdate userUpdate,IUserCreate userCreate)
         {
             _userGetByEmail = userGetByEmail;
             _userGetAll = userGetAll;
+            _userDelete = userDelete;
+            _userUpdate = userUpdate;
+            _userCreate = userCreate;
+            
         }
 
         [HttpGet]
@@ -32,7 +40,9 @@ namespace Presentation.Controllers
         [HttpGet]
         public IActionResult Users()
         {
-            
+            // Using var rather than ShippingStates as data type in case there isn't a user saved on SessionStorage
+            // If there is no user saved in SessionStorage and it tries to parse the user from JSON to ShippingStates
+            // and we're using a strong type it will blow up. Boom! not working. Not good.
             var role = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")).Role;
             
             if (Enum.GetName(role) != Role.Administrator.ToString())
@@ -41,7 +51,7 @@ namespace Presentation.Controllers
                 return RedirectToAction("Index", "Error", new { error = "You lack of privileges to enter this page" });
             }   
             
-            var users = _userGetAll.Execute().ToList();
+            List<UserListDto> users = _userGetAll.Execute().ToList();
 
             UsersViewModelUsers model = new UsersViewModelUsers
             {
@@ -55,21 +65,69 @@ namespace Presentation.Controllers
         [HttpGet]
         public IActionResult Profile(string email)
         {
-           Console.WriteLine(email);
-            var user = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")); 
+           var role = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")).Role;
+           var user = _userGetByEmail.Execute(email);
             
-            if (Enum.GetName(user.Role) != Role.Administrator.ToString() && user.Email != email )
+            if (Enum.GetName(role) != Role.Administrator.ToString() && user.Email != email )
                 return RedirectToAction("Index", "Error", new { error = "You lack of privileges to enter this page" });
             
             UsersViewModelProfile model = new UsersViewModelProfile
             {
-                User = user.Email == email
-                    ? user
-                    : _userGetByEmail.Execute(email)
+                User = user.Email == email ? user : _userGetByEmail.Execute(email)
             };
-            
+            ViewData["Title"] = "Profile";
             return View(model);
         }
+
+        // HTML doesn't have a DELETE HTTP method you can use on submit through a form
+        // so we'd have to use Javascript to do it if we wanted to use [HttpDelete].
+        // While it is possible, it wouldn't let us use and validate the AntiForgeryToken.
+        // I think it's best we keep it as HttpPost (less complexity == less stuff breaking up
+        // and booming up later down the line). Same applies for PATCH.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                throw new ArgumentException("Email is missing.");
+            }
+
+            UserProfileDto userDto = _userGetByEmail.Execute(email);
+            if (userDto == null)
+            {
+                throw new Exception("User not found.");
+            }
+
+            _userDelete.Execute(userDto);
+
+            return RedirectToAction("Users");
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(UserProfileDto editedUser)
+        {
+            
+            _userUpdate.Execute(editedUser);
+            return RedirectToAction("Users");
+        }
+
+
+        [HttpGet]
+        public IActionResult NewUser()
+        {
+                ViewData["Title"] = "New User";
+                return View();
+        }
+
+        [HttpPost]
+        public IActionResult SubmitNewUser(UserRegistrationDto user)
+        {
+            _userCreate.Execute(user);
+            return RedirectToAction("Users");
+        }
+
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

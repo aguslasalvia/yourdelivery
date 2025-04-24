@@ -2,7 +2,6 @@ using Application.Interfaces;
 using Core.Interfaces;
 using Core.Entities;
 using DTO.Users;
-
 namespace Application.UseCases;
 
 public class UserGetAllCase:IUserGetAllCase
