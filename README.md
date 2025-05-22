@@ -45,7 +45,7 @@ The system follows the principles of **Clean Architecture**, clearly separating 
 
 1️⃣ Clone the repository:  
 ```bash
-https://github.com/Prog-P3-2025-1/N3F-2025-Obligatorio1-Agustin-Lasalvia-Martin-Leib
+https://github.com/AgusLasalvia/YourDelivery
 ```  
 2️⃣ Set up the database in **SQL Server**.  
 3️⃣ Open the project in **Visual Studio** and configure the connection string.  
