@@ -17,13 +17,6 @@ public class UserUpdate:IUserUpdate
     
     public void Execute(UserProfileDto userDto)
     {
-        Console.WriteLine(userDto.Gender);
-        Console.WriteLine(userDto.Name);
-        Console.WriteLine(userDto.Password);
-        Console.WriteLine(userDto.Email);
-        Console.WriteLine(userDto.Phone);
-        Console.WriteLine(userDto.Role);
-        Console.WriteLine(userDto.Lastname);
         
         if (userDto == null || string.IsNullOrEmpty(userDto.Email))
             throw new ArgumentException("Invalid user data");

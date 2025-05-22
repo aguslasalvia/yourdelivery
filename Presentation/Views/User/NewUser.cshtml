@@ -1,53 +1,51 @@
 @using Core.Enums
+@model UsersViewModelNewUser
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-danger">@Model.Message</div>
+}
 
 <section class="mt-5 d-flex flex-column justify-content-center">
     <div>
         <figure class="d-flex align-content-center justify-content-center">
-            
-            @* TODO: find a generic user sign up img*@
-            
+            <img src="/assets/unknownProfile.png" width="300" alt="User Photo">
         </figure>
 
-        <form asp-action="NewUser" asp-controller="User" method="post">
+        <form asp-action="SubmitNewUser" asp-controller="User" method="post">
             @Html.AntiForgeryToken()
             <div class="d-flex flex-column justify-content-center align-content-center gap-2 mt-3">
                 <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
-                    
-                    <input class="mb-0 form-control" type="hidden" name="Id" value="" readonly/>
-                    
-                    <input class="mb-0 form-control" name="Email" placeholder="Email" value=""/>
-
-                    <input class="mb-0 form-control" type="password" name="Password" placeholder="Password" value=""/>
-
-
-
+                    <input class="mb-0 form-control" type="hidden" name="Id" value="" readonly />
+                    <input class="mb-0 form-control" name="Email" placeholder="Email" value="" />
+                    <input class="mb-0 form-control" type="password" name="Password" placeholder="Password" value="" />
                 </div>
 
                 <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
-                    <input class="mb-0 form-control" name="Name" placeholder="Name" value=""/>
-                    <input class="mb-0 form-control" name="Lastname" placeholder="Lastname" value=""/>
+                    <input class="mb-0 form-control" name="Name" placeholder="Name" value="" />
+                    <input class="mb-0 form-control" name="Lastname" placeholder="Lastname" value="" />
 
                 </div>
-               
+
                 <div class="input-group d-flex justify-content-center align-content-center gap-4">
-                   
-                    
                     <select class="mb-0 form-select">
-                        <option selected="selected" value="">Choose a role</option>
-                        <option value="@Role.Administrator">Administrator</option>
-                        <option value="@Role.Employee">Employee</option>
-                        <option value="@Role.Client">Client</option>
+                        <!-- Agus: even though we are able to create both Admins and Clients
+                        for this due date we only need CRUDs for Employee. I'd rather focus
+                        on sticking to the assignment and make sure everything works. -->
+                        <option disabled value="@Role.Administrator">Administrator</option>
+                        <option selected="selected" value="@Role.Employee">Employee</option>
+                        <option disabled value="@Role.Client">Client</option>
                     </select>
-                    
+
                     <select class="mb-0 form-select">
-                        <option selected="selected" value="">Choose a gender</option>
+                        <option selected="selected" disabled value="">Choose a gender</option>
                         <option value="@Gender.Female">Female</option>
                         <option value="@Gender.Male">Male</option>
                     </select>
                 </div>
+
                 <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
-                    <input class="mb-0 form-control" name="Phone" value="" placeholder="Phone"/>
-                    <input type="date" class="mb-0 form-control" name="Birth" value=""  />
+                    <input class="mb-0 form-control" name="Phone" value="" placeholder="Phone" />
+                    <input type="date" class="mb-0 form-control" name="Birth" value="" />
                 </div>
                 <div class="d-flex justify-content-center mt-3">
                     <button type="submit" class="btn btn-success" title="Save Changes">

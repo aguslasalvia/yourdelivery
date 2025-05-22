@@ -45,7 +45,7 @@ The system follows the principles of **Clean Architecture**, clearly separating 
 
 1️⃣ Clone the repository:  
 ```bash
-git clone https://github.com/AgusLasalvia/obligatorio-p3.git
+https://github.com/Prog-P3-2025-1/N3F-2025-Obligatorio1-Agustin-Lasalvia-Martin-Leib
 ```  
 2️⃣ Set up the database in **SQL Server**.  
 3️⃣ Open the project in **Visual Studio** and configure the connection string.  

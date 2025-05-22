@@ -7,13 +7,13 @@
 <div id="sidebar" class="collapse d-md-block bg-third text-white vh-100 p-2" style="width: 70px !important;">
 	@* <hr> *@
 	<ul class="nav nav-pills flex-column align-items-center justify-content-center">
-		
+
 		<li class="nav-item">
 			<a title="Home" href="@Url.Action("Dashboard", "User")" class="nav-link text-white">
 				<i class="bi bi-house-door"></i>
 			</a>
 		</li>
-		
+
 		@* Admin nav options *@
 		@if (Context.Session.GetString("Role") == Role.Administrator.ToString())
 		{
@@ -22,40 +22,35 @@
 					<i class="bi bi-people"></i>
 				</a>
 			</li>
-		
+
+			<li class="nav-item">
+				<a title="Add Employee" href="@Url.Action("NewUser", "User")" class="nav-link text-white">
+					<i class="bi bi-person-add"></i>
+				</a>
+			</li>
 		}
 
 		<li class="nav-item">
 			<a title="New Shippment" href="@Url.Action("NewShipping", "Shipping")" class="nav-link text-white">
-				<i class="bi bi-truck"></i>	
-			</a>
-		</li>
-
-
-
-
-		<li class="nav-item">
-			<a title="End Shippment" href="@Url.Action("Profile", "User")" class="nav-link text-white">
-				<i class="bi bi-truck-flatbed"></i>
+				<i class="bi bi-truck"></i>
 			</a>
 		</li>
 
 		<li class="nav-item">
-			<a title="Add Comment" href="@Url.Action("Profile", "User")" class="nav-link text-white">
-				<i class="bi bi-chat-left-dots"></i>
+			<a title="All Shippings" href="@Url.Action("List", "Shipping")" class="nav-link text-white">
+				<i class="bi bi-table"></i>
 			</a>
 		</li>
-		
 
-		
 		<li class="nav-item">
 			<a title="Tracking Package" href="@Url.Action("Tracking", "Shipping")" class="nav-link text-white">
 				<i class="bi bi-geo-alt"></i>
 			</a>
 		</li>
-		
+
 		<li class="nav-item">
-			<a title="Profile" href="@Url.Action("Profile", "User",new{email = Context.Session.GetString("Email")})" class="nav-link text-white">
+			<a title="Profile" href="@Url.Action("Profile", "User", new { email = Context.Session.GetString("Email") })"
+				class="nav-link text-white">
 				<i class="bi bi-person"></i>
 			</a>
 		</li>
@@ -72,5 +67,3 @@
 		</a>
 	</div>
 </div>
-
-

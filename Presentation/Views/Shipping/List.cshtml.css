@@ -1,0 +1,39 @@
+/*.custom-table tbody tr:hover {*/
+/*    transform: scale(1.02);*/
+/*    background-color: #eb0f0f;*/
+/*}*/
+
+td {
+	border-bottom-width: 0;
+	font-size: medium;
+	text-align: center;
+}
+
+th {
+	border-bottom-width: 2px;
+	border-color: var(--secondary-color) !important;
+	text-align: center;
+}
+
+th>a {
+	width: 80px !important;
+}
+
+i {
+	width: 20px !important;
+}
+
+
+
+tbody>tr {
+	margin-top: 20px !important;
+}
+
+.table-container {
+	max-height: 100vh;
+	/* Puedes ajustar este valor según lo que necesites */
+	max-width: 100%;
+	overflow-y: auto;
+	
+	/* Opcional: para que se vea delimitado */
+}

@@ -12,9 +12,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\API\API.csproj" />
 	  <ProjectReference Include="..\Application\Application.csproj" />
 	  <ProjectReference Include="..\DTO\DTO.csproj" />
 	  <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <_ContentIncludedByDefault Remove="API\appsettings.Development.json" />
+	  <_ContentIncludedByDefault Remove="API\appsettings.json" />
+	  <_ContentIncludedByDefault Remove="API\obj\API.csproj.nuget.dgspec.json" />
+	  <_ContentIncludedByDefault Remove="API\obj\project.assets.json" />
+	  <_ContentIncludedByDefault Remove="API\obj\project.packagespec.json" />
+	  <_ContentIncludedByDefault Remove="API\Properties\launchSettings.json" />
 	</ItemGroup>
 
 </Project>

@@ -1,4 +1,9 @@
-<!-- Login -->
+@model Presentation.Models.LoginViewModel
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-danger">@Model.Message</div>
+}
 
 <div id="login" class="d-flex justify-content-center align-items-center">
     <div class="box-container h-75 d-flex justify-content-center mb-5 ">
@@ -8,29 +13,26 @@
         </figure>
 
 
-        <div class="form-box h-100  bg-secondary shadow-lg d-flex flex-column justify-content-center align-items-center">
+        <div
+            class="form-box h-100  bg-secondary shadow-lg d-flex flex-column justify-content-center align-items-center">
             <h1 class="text-white mb-5">Login</h1>
 
-            <form 
-                action="@Url.Action("SubmitLogin","Auth")" 
-                method="post" 
-                class=" w-100 d-flex flex-column justify-content-center align-items-center"
-                  >
+            <form asp-action="SubmitLogin" asp-controller="Auth" method="post"
+                class="w-100 d-flex flex-column justify-content-center align-items-center">
 
-                <div class="input-group mb-3 w-75 w ">
+                <div class="input-group mb-3 w-75">
                     <span class="input-group-text" id="basic-addon1">@@</span>
-                    <input type="email" class="form-control" name="Email" placeholder="Email" aria-label="Email"
-                           aria-describedby="basic-addon1" required>
+                    <input asp-for="UserLogin.Email" class="form-control" placeholder="Email" aria-label="Email"
+                        aria-describedby="basic-addon1" required />
                 </div>
 
                 <div class="input-group mb-3 w-75">
                     <span class="input-group-text" id="basic-addon1"><i class="bi bi-key"></i></span>
-                    <input type="password" class="form-control" name="Password" placeholder="Password" aria-label="Password"
-                           aria-describedby="basic-addon1" required>
+                    <input asp-for="UserLogin.Password" type="password" class="form-control" placeholder="Password"
+                        aria-label="Password" aria-describedby="basic-addon1" required />
                 </div>
 
                 <button type="submit" class="btn btn-primary w-25 mt-3">Login</button>
-
             </form>
         </div>
     </div>

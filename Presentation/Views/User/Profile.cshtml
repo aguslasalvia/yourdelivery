@@ -5,14 +5,14 @@
 <section class="mt-5 d-flex flex-column justify-content-center">
     <div>
         <figure class="d-flex align-content-center justify-content-center">
-            
+
             @if (Enum.GetName(Model.User.Gender) == Gender.Female.ToString())
             {
-                <img src="/assets/womanProfile.png" alt="User Photo">
+                <img src="/assets/womanProfile.png" width="300" alt="User Photo">
             }
             else
             {
-                <img src="/assets/manProfile.png" alt="User Photo">
+                <img src="/assets/manProfile.png" width="300" alt="User Photo">
             }
         </figure>
 
@@ -22,36 +22,58 @@
                 <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
                     <input class="mb-0 form-control" type="hidden" name="Id" value="@Model.User.Id" readonly />
                     <input class="mb-0 form-control" name="Email" value="@Model.User.Email" />
-
-                    <input class="mb-0 form-control" type="password" name="Password" value="@Model.User.Password"/>
-
-                    
-                    
+                    <input class="mb-0 form-control" type="password" name="Password" value="@Model.User.Password" />
                 </div>
 
                 <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
-                    <input class="mb-0 form-control" name="Name" value="@Model.User.Name"/>
-                    <input class="mb-0 form-control" name="Lastname" value="@Model.User.Lastname"/>
-
+                    <input class="mb-0 form-control" name="Name" value="@Model.User.Name" />
+                    <input class="mb-0 form-control" name="Lastname" value="@Model.User.Lastname" />
                 </div>
-               
+
                 <div class="input-group d-flex justify-content-center align-content-center gap-4">
-                   
-                    
-                    <select class="mb-0 form-select">
-                        <option selected="@Model.User.Role. == 0" value="@Role.Administrator">Administrator</option>
-                        <option selected="@Model.User.Role == 1" value="@Role.Employee" >Employee</option>
-                        <option selected="@Model.User.Role == 2" value="@Role.Client">Client</option>
+                    <select class="mb-0 form-select" name="Role">
+                        @if (@Model.UserRole == Role.Administrator)
+                        {
+                            <option value="@((int)Role.Administrator)" selected="@(Model.User.Role == Role.Administrator)">
+                                Administrator
+                            </option>
+                            <option value="@((int)Role.Employee)" selected="@(Model.User.Role == Role.Employee)">
+                                Employee
+                            </option>
+                            <option value="@((int)Role.Client)" selected="@(Model.User.Role == Role.Client)">
+                                Client
+                            </option>
+                        }
+                        else if (@Model.UserRole == Role.Employee)
+                        {
+                            <option value="@((int)Role.Employee)" selected="@(Model.User.Role == Role.Employee)">
+                                Employee
+                            </option>
+                        }
+                        else
+                        {
+                            <option value="@((int)Role.Client)" selected="@(Model.User.Role == Role.Client)">
+                                Client
+                            </option>
+                        }
                     </select>
-                    
-                    <select class="mb-0 form-select">
-                        <option selected="@Model.User.Gender == 0" value="@Gender.Female">Female</option>
-                        <option selected="@Model.User.Gender == 1" value="@Gender.Male">Male</option>
+
+                    <!-- Select para Gender -->
+                    <select class="mb-0 form-select" name="Gender">
+                        <option value="@((int)Gender.Female)" selected="@(Model.User.Gender == Gender.Female)">
+
+                            Female
+
+                        </option>
+                        <option value="@((int)Gender.Male)" selected="@(Model.User.Gender == Gender.Male)">
+                            Male
+                        </option>
                     </select>
                 </div>
                 <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
                     <input class="mb-0 form-control" name="Phone" value="@Model.User.Phone" />
-                    <input type="date" class="mb-0 form-control" name="Birth" value="@Model.User.Birth.ToString("yyyy-MM-dd")" />
+                    <input type="date" class="mb-0 form-control" name="Birth"
+                        value="@Model.User.Birth.ToString("yyyy-MM-dd")" />
                 </div>
                 <div class="d-flex justify-content-center mt-3">
                     <button type="submit" class="btn btn-success" title="Save Changes">

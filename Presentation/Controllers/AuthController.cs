@@ -6,7 +6,7 @@ using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 using DTO.Users;
-using DTO.Users;
+using System.Security.Authentication;
 
 
 namespace Presentation.Controllers
@@ -24,30 +24,43 @@ namespace Presentation.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            ViewData["Title"] = "Login";
             HttpContext.Session.Clear();
-            return View();
+            return View(new LoginViewModel());
         }
 
         [HttpPost]
-        public IActionResult SubmitLogin(UserLoginDto userLogin)
+        public IActionResult SubmitLogin(LoginViewModel model)
         {
-            
-            var user = _login.Execute(userLogin);
-            if (user != null)
+            try
             {
-                HttpContext.Session.SetString("User", JsonSerializer.Serialize(user));
-                HttpContext.Session.SetString("Email",user.Email);
-                HttpContext.Session.SetString("Role",Enum.GetName(user.Role));
-                return RedirectToAction("Dashboard","User");
+                UserDto user = _login.Execute(model.UserLogin);
+
+                if (user != null)
+                {
+                    if (user.Role == Role.Client)
+                    {
+                        throw new InvalidCredentialException("We are under construction 🚧, users can't login yet!");
+                    }
+
+                    HttpContext.Session.SetString("User", JsonSerializer.Serialize(user));
+                    // This will be used on _Sidebar.cshtml
+                    HttpContext.Session.SetString("Email", user.Email);
+                    HttpContext.Session.SetString("Role", Enum.GetName(user.Role));
+                    return RedirectToAction("Dashboard", "User");
+                }
+
+                model.Message = "Invalid credentials.";
+            }
+            catch (Exception e)
+            {
+                model.Message = e.Message;
             }
             
-            // TODO: Search the user on the DB
-            return View("Login");
-
+            return View("Login", model);
         }
+
         public IActionResult Logout()
-        {   
+        {
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }

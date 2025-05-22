@@ -1,46 +1,53 @@
-﻿@using Microsoft.EntityFrameworkCore.Metadata.Internal
+﻿@if (!string.IsNullOrEmpty(Model.Message))
+{
+	<div class="alert alert-danger">@Model.Message</div>
+}
+
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
 @using Core.Enums
 @model ShippingViewModelTracking
 
 <div class="d-flex flex-column justify-content-center align-items-center flex-column mt-5">
-    <h1 class="w-100 text-center">Find your package</h1>
+	<h1 class="w-100 text-center">Find your package</h1>
 
-    <form class="w-100 align-content-center justify-content-center d-flex">
-        <div class="input-group d-flex justify-content-center w-50 align-content-center">
-            <span class="input-group-text" id="basic-addon1"><i class="bi bi-geo-alt-fill"></i></span>
-            <input type="number" class="form-control" name="trackingNumber" placeholder="Tracking Number" aria-label="trackingNumber"
-                   aria-describedby="basic-addon1" required>
-        </div>
-    </form>
+	<form asp-action="Tracking" asp-controller="Shipping" method="get"
+		class="w-100 align-content-center justify-content-center d-flex">
+		<div class="input-group d-flex justify-content-center w-50 align-content-center">
+			<span class="input-group-text" id="basic-addon1"><i class="bi bi-geo-alt-fill"></i></span>
+			<input type="number" class="form-control" name="trackingNumber" placeholder="Tracking Number"
+				aria-label="trackingNumber" aria-describedby="basic-addon1" required>
+		</div>
+	</form>
 
-    <figure class="mt-5 w-100 d-flex justify-content-center">
-        <img src="/assets/tracking.png" alt="Tracking image"/>
-    </figure>
-    
-    
-    @if (Model.TrackingNumber != null)
-    {
-        <div class="content-container d-flex justify-content-center flex-column">
-            <h2 class="text-center mb-2">Your Package State</h2>        
-            <div class="flex justify-content-center align-content-center text-center gap-3">
-                <p>Tracking Number: @Model.TrackingNumber</p>
-                <p>Client Email: </p>
-                <p>Employee Email: </p>
-            
-                @* Change this in the future *@
-                @if (ViewBag.State == ShippingState.OnProcess)
-                {
-                    <p class="btn btn-secondary">@Model.State</p>
-                }
-                else if (ViewBag.State == ShippingState.Finished)
-                {   
-                    <p class="btn btn-success"> @Model.State</p>
-                }
-                else
-                {
-                    <p class="btn btn-danger">Unknown</p> 
-                }
-            </div>
-        </div>
-    }
+	<figure class="mt-5 w-100 d-flex justify-content-center">
+		<img src="/assets/tracking.png" alt="Tracking image" />
+	</figure>
+
+
+	@if (Model.Shipping != null)
+	{
+		<div class="content-container d-flex justify-content-center flex-column">
+			<h2 class="text-center mb-2">Your Package State</h2>
+			<div class="flex justify-content-center align-content-center text-center gap-3">
+				<p>Tracking Number: @Model.Shipping.Id</p>
+				<p>Client Email: @Model.Shipping.Client.Email</p>
+				<p>Employee Email: @Model.Shipping.Employee.Email</p>
+
+				@* Change this in the future *@
+				@if (Model.Shipping.State == ShippingState.OnProcess)
+				{
+					<p class="btn btn-secondary">@Model.Shipping.State</p>
+				}
+				else if (Model.Shipping.State == ShippingState.Finished)
+				{
+					<p class="btn btn-success"> @Model.Shipping.State</p>
+				}
+				else
+				{
+					<p class="btn btn-danger">Unknown</p>
+				}
+			</div>
+		</div>
+	}
+	<iframe src="" frameborder="0"></iframe>
 </div>

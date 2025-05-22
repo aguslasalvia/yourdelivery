@@ -1,6 +1,5 @@
 ﻿using Core.Entities;
 
-
 namespace Core.Interfaces
 {
     public interface IAgencyRepository
@@ -12,5 +11,6 @@ namespace Core.Interfaces
         Agency? GetByName( string name );
 
         IEnumerable<Agency> GetAll ();
+        Agency GetById ( int id );
     }
 }

@@ -1,8 +1,0 @@
-Major TODOs:
-- Add: create shipping (view is OK, backend is necessary)
-- Add: delete user (view is OK, backend is necessary)
-- Add: edit user (view is OK, backend is necessary)
-
-Minor TODOs:
-- Fix border-radius on buttons. As of RN many of them are inconsistent.
- 

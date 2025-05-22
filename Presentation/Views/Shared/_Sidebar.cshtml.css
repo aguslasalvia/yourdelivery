@@ -3,7 +3,8 @@ a:hover {
 }
 
 #sidebar {
-	position: relative;
+	position: fixed;
+	left: 0;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -28,7 +29,7 @@ a:hover {
 i,
 a {
 	font-size: 20px !important;
-	
+
 }
 
 @keyframes fadeIn {

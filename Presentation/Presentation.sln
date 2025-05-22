@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "..\Infras
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTO", "..\DTO\DTO.csproj", "{1FB455E2-2B62-4190-8C7B-8E0B5DF1E7F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "..\API\API.csproj", "{D60B32F7-272A-4D72-A1AC-951F43A1644F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{1FB455E2-2B62-4190-8C7B-8E0B5DF1E7F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FB455E2-2B62-4190-8C7B-8E0B5DF1E7F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FB455E2-2B62-4190-8C7B-8E0B5DF1E7F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D60B32F7-272A-4D72-A1AC-951F43A1644F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D60B32F7-272A-4D72-A1AC-951F43A1644F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D60B32F7-272A-4D72-A1AC-951F43A1644F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D60B32F7-272A-4D72-A1AC-951F43A1644F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

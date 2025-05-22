@@ -1,5 +1,8 @@
-﻿@using DTO.Users
-@model UsersViewModelUsers
+﻿@model UsersViewModelUsers
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+	<div class="alert alert-danger">@Model.Message</div>
+}
 
 <table class="custom-table table w-100 mt-5">
     <thead>
