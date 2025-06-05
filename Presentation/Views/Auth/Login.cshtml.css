@@ -1,29 +1,67 @@
 button {
 	height: 50px !important;
-	font-size: 20px;
+	font-size: 18px;
+	transition: all 0.3s ease;
+}
+
+button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .form-box {
 	width: 550px;
-	border-radius: 30px;
-	box-shadow: 10px 10px 20px #ffc30d;
+	border-radius: 20px;
+	background: linear-gradient(to bottom right, #ffffff, #f8f9fa);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .box-container {
 	width: 1200px;
-	box-shadow: inset 0 0 20px #ffc30d;
+	background: rgba(255, 255, 255, 0.9);
 	border-radius: 30px !important;
 	max-height: 770px;
+	padding: 2rem;
+	box-shadow: 0 15px 30px rgba(108, 117, 125, 0.3);
 }
 
-
-figure {
+.welcome-section {
 	width: 60%;
+	padding: 2rem;
 }
 
-img {
-	width: 500px;
-	animation: movement 2s infinite;
+.welcome-image {
+	width: 400px;
+	animation: float 6s ease-in-out infinite;
+}
+
+.password-container {
+	position: relative;
+}
+
+.password-toggle {
+	position: absolute;
+	right: 15px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	color: #6c757d;
+	transition: color 0.3s ease;
+}
+
+.password-toggle:hover {
+	color: #0d6efd;
+}
+
+.form-floating>.form-control:focus~label,
+.form-floating>.form-control:not(:placeholder-shown)~label {
+	color: #0d6efd;
+	opacity: 0.8;
+}
+
+.form-control:focus {
+	border-color: #0d6efd;
+	box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
 }
 
 footer {
@@ -39,6 +77,7 @@ body {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
+	background-color: #f8f9fa;
 }
 
 #login {
@@ -48,15 +87,22 @@ body {
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	/*margin-bottom: 20px;*/
 	animation: fadeIn 0.8s ease-in-out;
+}
 
+.alert {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	min-width: 300px;
+	z-index: 1000;
+	animation: slideIn 0.5s ease-out;
 }
 
 @keyframes fadeIn {
 	from {
 		opacity: 0;
-		transform: translateY(-50px);
+		transform: translateY(-20px);
 	}
 
 	to {
@@ -65,16 +111,44 @@ body {
 	}
 }
 
-@keyframes movement {
+@keyframes float {
 	0% {
-		transform: translateX(0px);
+		transform: translateY(0px);
 	}
 
 	50% {
-		transform: translateX(50px);
+		transform: translateY(-20px);
 	}
 
 	100% {
-		transform: translateX(0px);
+		transform: translateY(0px);
+	}
+}
+
+@keyframes slideIn {
+	from {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+@media (max-width: 1200px) {
+	.box-container {
+		width: 95%;
+		flex-direction: column;
+	}
+
+	.welcome-section,
+	.form-box {
+		width: 100%;
+	}
+
+	.welcome-image {
+		width: 300px;
 	}
 }

@@ -1,69 +1,145 @@
 @using System.Text.Json
 @using Core.Enums
-@* <button class="btn btn-primary d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar"> *@
-@*     ☰ Menú *@
-@* </button> *@
 
-<div id="sidebar" class="collapse d-md-block bg-third text-white vh-100 p-2" style="width: 70px !important;">
-	@* <hr> *@
-	<ul class="nav nav-pills flex-column align-items-center justify-content-center">
-
-		<li class="nav-item">
-			<a title="Home" href="@Url.Action("Dashboard", "User")" class="nav-link text-white">
-				<i class="bi bi-house-door"></i>
+<div id="sidebar" class="bg-third text-white vh-100 p-2">
+	<ul class="nav nav-pills flex-column">
+		<!-- Dashboard -->
+		<li class="nav-item mb-2">
+			<a href="@Url.Action("Dashboard", "User")" 
+			   class="nav-link text-white @(ViewContext.RouteData.Values["Action"].ToString() == "Dashboard" ? "active" : "")"
+			   data-bs-toggle="tooltip" 
+			   data-bs-placement="right" 
+			   title="Dashboard">
+				<i class="bi bi-speedometer2 me-2"></i>
+				<span class="sidebar-text">Dashboard</span>
 			</a>
 		</li>
 
-		@* Admin nav options *@
+		<!-- Admin Section -->
 		@if (Context.Session.GetString("Role") == Role.Administrator.ToString())
 		{
-			<li class="nav-item">
-				<a title="Users" href="@Url.Action("Users", "User")" class="nav-link text-white">
-					<i class="bi bi-people"></i>
-				</a>
-			</li>
-
-			<li class="nav-item">
-				<a title="Add Employee" href="@Url.Action("NewUser", "User")" class="nav-link text-white">
-					<i class="bi bi-person-add"></i>
-				</a>
+			<li class="sidebar-section mb-2">
+				<small class="text-uppercase text-muted px-3 mb-2 d-block">Admin</small>
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a href="@Url.Action("Users", "User")" 
+						   class="nav-link text-white @(ViewContext.RouteData.Values["Action"].ToString() == "Users" ? "active" : "")"
+						   data-bs-toggle="tooltip" 
+						   data-bs-placement="right" 
+						   title="Manage Users">
+							<i class="bi bi-people me-2"></i>
+							<span class="sidebar-text">Users</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="@Url.Action("NewUser", "User")" 
+						   class="nav-link text-white @(ViewContext.RouteData.Values["Action"].ToString() == "NewUser" ? "active" : "")"
+						   data-bs-toggle="tooltip" 
+						   data-bs-placement="right" 
+						   title="Add New Employee">
+							<i class="bi bi-person-plus me-2"></i>
+							<span class="sidebar-text">Add Employee</span>
+						</a>
+					</li>
+				</ul>
 			</li>
 		}
 
-		<li class="nav-item">
-			<a title="New Shippment" href="@Url.Action("NewShipping", "Shipping")" class="nav-link text-white">
-				<i class="bi bi-truck"></i>
-			</a>
+		<!-- Shipping Section -->
+		<li class="sidebar-section mb-2">
+			<small class="text-uppercase text-muted px-3 mb-2 d-block">Shipping</small>
+			<ul class="nav flex-column">
+				<li class="nav-item">
+					<a href="@Url.Action("NewShipping", "Shipping")" 
+					   class="nav-link text-white @(ViewContext.RouteData.Values["Action"].ToString() == "NewShipping" ? "active" : "")"
+					   data-bs-toggle="tooltip" 
+					   data-bs-placement="right" 
+					   title="Create New Shipment">
+						<i class="bi bi-box-seam me-2"></i>
+						<span class="sidebar-text">New Shipment</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="@Url.Action("List", "Shipping")" 
+					   class="nav-link text-white @(ViewContext.RouteData.Values["Action"].ToString() == "List" ? "active" : "")"
+					   data-bs-toggle="tooltip" 
+					   data-bs-placement="right" 
+					   title="View All Shipments">
+						<i class="bi bi-table me-2"></i>
+						<span class="sidebar-text">All Shipments</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="@Url.Action("Tracking", "Shipping")" 
+					   class="nav-link text-white @(ViewContext.RouteData.Values["Action"].ToString() == "Tracking" ? "active" : "")"
+					   data-bs-toggle="tooltip" 
+					   data-bs-placement="right" 
+					   title="Track Package Location">
+						<i class="bi bi-geo-alt me-2"></i>
+						<span class="sidebar-text">Track Package</span>
+					</a>
+				</li>
+			</ul>
 		</li>
 
-		<li class="nav-item">
-			<a title="All Shippings" href="@Url.Action("List", "Shipping")" class="nav-link text-white">
-				<i class="bi bi-table"></i>
-			</a>
+		<!-- User Section -->
+		<li class="sidebar-section">
+			<small class="text-uppercase text-muted px-3 mb-2 d-block">User</small>
+			<ul class="nav flex-column">
+				<li class="nav-item">
+					<a href="@Url.Action("Profile", "User", new { email = Context.Session.GetString("Email") })" 
+					   class="nav-link text-white @(ViewContext.RouteData.Values["Action"].ToString() == "Profile" ? "active" : "")"
+					   data-bs-toggle="tooltip" 
+					   data-bs-placement="right" 
+					   title="View Profile">
+						<i class="bi bi-person-circle me-2"></i>
+						<span class="sidebar-text">Profile</span>
+					</a>
+				</li>
+			</ul>
 		</li>
-
-		<li class="nav-item">
-			<a title="Tracking Package" href="@Url.Action("Tracking", "Shipping")" class="nav-link text-white">
-				<i class="bi bi-geo-alt"></i>
-			</a>
-		</li>
-
-		<li class="nav-item">
-			<a title="Profile" href="@Url.Action("Profile", "User", new { email = Context.Session.GetString("Email") })"
-				class="nav-link text-white">
-				<i class="bi bi-person"></i>
-			</a>
-		</li>
-
-
-
-
 	</ul>
 
-	<div id="logout" class="w-100 mx-2 p-1 mt-5 position-absolute bottom-0">
-		@* <hr /> *@
-		<a title="Log Out" href="@Url.Action("Logout", "Auth")" class="nav-link text-white">
-			<i class="bi bi-box-arrow-right"></i>
-		</a>
+	<div id="logout" class="mt-auto">
+		<hr class="text-muted">
+		<ul class="nav flex-column">
+			<li class="nav-item">
+				<a href="@Url.Action("Logout", "Auth")" 
+				   class="nav-link text-white"
+				   data-bs-toggle="tooltip" 
+				   data-bs-placement="right" 
+				   title="Sign Out">
+					<i class="bi bi-box-arrow-right me-2"></i>
+					<span class="sidebar-text">Sign Out</span>
+				</a>
+			</li>
+		</ul>
 	</div>
 </div>
+
+@section Scripts {
+	<script>
+		// Initialize tooltips
+		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+		var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+			return new bootstrap.Tooltip(tooltipTriggerEl)
+		})
+
+		// Handle hover events for tooltips
+		const sidebar = document.getElementById('sidebar');
+		
+		sidebar.addEventListener('mouseenter', function() {
+			// Hide tooltips when sidebar is expanded
+			tooltipList.forEach(tooltip => {
+				tooltip.hide();
+			});
+		});
+		
+		sidebar.addEventListener('mouseleave', function() {
+			// Re-enable tooltips when sidebar is collapsed
+			tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+				return new bootstrap.Tooltip(tooltipTriggerEl)
+			});
+		});
+	</script>
+}
