@@ -17,6 +17,8 @@ namespace Presentation.Controllers
 		[HttpGet]
 		public IActionResult Login()
 		{
+			ViewData["Title"] = "Login";
+			
 			HttpContext.Session.Clear();
 			return View(new LoginViewModel());
 		}
