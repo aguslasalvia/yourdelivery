@@ -18,12 +18,18 @@ namespace Presentation.Controllers
 		[HttpGet]
 		public IActionResult Dashboard()
 		{
+			ViewData["Title"] = "Dashboard";
+			IActionResult loginCheck = CheckUserIsLogged();
+			if (loginCheck != null) return loginCheck;
 			return View();
 		}
 
 		[HttpGet]
 		public IActionResult Users()
 		{
+
+			ViewData["Title"] = "Users";
+
 			IActionResult loginCheck = CheckUserIsLogged();
 			if (loginCheck != null) return loginCheck;
 
@@ -74,6 +80,9 @@ namespace Presentation.Controllers
 		[HttpGet]
 		public IActionResult Profile()
 		{
+
+			ViewData["Title"] = "Profile";
+
 			IActionResult loginCheck = CheckUserIsLogged();
 			if (loginCheck != null) return loginCheck;
 
@@ -91,6 +100,9 @@ namespace Presentation.Controllers
 		[HttpGet]
 		public IActionResult NewUser()
 		{
+
+			ViewData["Title"] = "New User";
+
 			UsersViewModelNewUser model = new UsersViewModelNewUser { };
 
 			IActionResult loginCheck = CheckUserIsLogged();

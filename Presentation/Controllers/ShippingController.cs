@@ -18,6 +18,9 @@ namespace Presentation.Controllers
 		public IActionResult NewShipping()
 		{
 
+			ViewData["Title"] = "New Shipping";
+			IActionResult loginCheck = CheckUserIsLogged();
+			if (loginCheck != null) return loginCheck;
 			return View();
 		}
 
@@ -26,6 +29,9 @@ namespace Presentation.Controllers
 		[HttpGet]
 		public IActionResult Tracking(int? trackingNumber)
 		{
+
+			ViewData["Title"] = "Tracking";
+
 			IActionResult loginCheck = CheckUserIsLogged();
 			if (loginCheck != null) return loginCheck;
 			ShippingViewModelTracking model = new ShippingViewModelTracking { };
@@ -73,6 +79,8 @@ namespace Presentation.Controllers
 		[HttpGet]
 		public IActionResult List()
 		{
+			ViewData["Title"] = "Shippings";
+
 			IActionResult loginCheck = CheckUserIsLogged();
 			if (loginCheck != null) return loginCheck;
 			IActionResult clientCheck = ClientCantAccess();
