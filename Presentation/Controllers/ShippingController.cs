@@ -5,7 +5,6 @@ using DTO;
 using DTO.Users;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
-using Core.Entities;
 
 
 namespace Presentation.Controllers
@@ -17,11 +16,54 @@ namespace Presentation.Controllers
 		[HttpGet]
 		public IActionResult NewShipping()
 		{
+			try
+			{
+				ViewData["Title"] = "New Shipping";
+				IActionResult loginCheck = CheckUserIsLogged();
+				if (loginCheck != null) return loginCheck;
 
-			ViewData["Title"] = "New Shipping";
-			IActionResult loginCheck = CheckUserIsLogged();
-			if (loginCheck != null) return loginCheck;
-			return View();
+				ShippingViewModelNew model = new ShippingViewModelNew
+				{
+					Agencies = new List<AgencyShippingDto>
+					{
+						new AgencyShippingDto
+						{
+							Id = 1,
+							Name = "Agency One",
+							Address = "123 Main St",
+						},
+						new AgencyShippingDto
+						{
+							Id = 2,
+							Name = "Agency Two",
+							Address = "456 Elm St",
+						}
+					},
+					Clients = new List<UserListDto>
+					{
+						new UserListDto
+						{
+							Id = 1,
+							Name = "John Doe",
+							Email = "john.doe@example.com",
+							Phone = "123-456-7890",
+						},
+						new UserListDto
+						{
+							Id = 2,
+							Name = "Jane Smith",
+							Email = "jane.smith@example.com",
+							Phone = "987-654-3210",
+						}
+					},
+					Message = string.Empty
+				};
+				return View(model);
+			}
+			catch (Exception ex)
+			{
+				return RedirectToAction("Error", new { error = ex.Message });
+			}
 		}
 
 
@@ -86,7 +128,68 @@ namespace Presentation.Controllers
 			IActionResult clientCheck = ClientCantAccess();
 			if (clientCheck != null) return clientCheck;
 
-			return View();
+			ShippingViewModelList model = new ShippingViewModelList
+			{
+				Shippings = new List<ShippingDto>
+				{
+					new ShippingDto
+					{
+						Id = 1,
+						Weight = 2.5f,
+						State = ShippingState.OnProcess,
+						Client = new UserDto
+						{
+							Id = 1,
+							Name = "John Doe",
+							Email = "john.doe@example.com"
+						},
+						Employee = new UserDto
+						{
+							Id = 1,
+							Name = "Alice Johnson",
+							Email = "alice.johnson@example.com"
+						}
+					},
+					new ShippingDto
+					{
+						Id = 2,
+						Weight = 3.0f,
+						State = ShippingState.OnProcess,
+						Client = new UserDto
+						{
+							Id = 2,
+							Name = "Jane Smith",
+							Email = "jane.smith@example.com"
+						},
+						Employee = new UserDto
+						{
+							Id = 2,
+							Name = "Bob Brown",
+							Email = "bob.brown@example.com"
+						}
+					},
+					new ShippingDto
+					{
+						Id = 3,
+						Weight = 1.5f,
+						State = ShippingState.OnProcess,
+						Client = new UserDto
+						{
+							Id = 3,
+							Name = "Charlie White",
+							Email = "charlie.white@example.com"
+						},
+						Employee = new UserDto
+						{
+							Id = 3,
+							Name = "Eve Davis",
+							Email = "eve.davis@example.com"
+						}
+					},
+				},
+			};
+
+			return View(model);
 		}
 
 		[HttpGet]
