@@ -1,19 +1,20 @@
 @model CommentViewModelAdd
 
-<div class="d-flex flex-column justify-content-center align-items-center flex-column mt-5">
-    <h1 class="">Add Comment</h1>
-    <div class="d-flex flex-column justify-content-center align-items-center flex-column mt-3">
-        <form method="post" asp-action="Add" asp-controller="Commentary">
-            <h2 class="fw-normal fs-4 text-center mb-3">Shipping ID: @Model.Shipping.Id</h2>
-            <div class="mb-3">
-                <input type="hidden" id="shippingId" placeholder="shippingID" name="shippingID"
-                       value="@Model.Shipping.Id" />
-                <input type="text" class="form-control" id="comment" placeholder="Comment" name="Comment"
-                       required="required" />
-            </div>
-            <div class="mt-3">
-                <input type="submit" class="btn btn-primary w-100" value="Add comment" />
-            </div>
-        </form>
-    </div>
+<div class="page-header">
+	<h1>Add Comment</h1>
+	<p class="subtitle">Add a tracking note for shipment #@Model.Shipping.Id.</p>
+</div>
+
+<div class="form-card card-surface animate-in">
+	<form method="post" asp-action="Add" asp-controller="Commentary">
+		<input type="hidden" name="shippingID" value="@Model.Shipping.Id" />
+		<div class="mb-3">
+			<label for="comment" class="form-label">Comment</label>
+			<textarea class="form-control" id="comment" name="Comment" rows="3"
+				placeholder="Describe the current status or location..." required></textarea>
+		</div>
+		<button type="submit" class="btn btn-primary w-100">
+			<i class="bi bi-chat-left-dots me-2"></i>Add comment
+		</button>
+	</form>
 </div>

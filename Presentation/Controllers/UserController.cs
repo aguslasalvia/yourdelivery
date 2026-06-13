@@ -2,7 +2,6 @@ using System.Diagnostics;
 using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
-using Application.Interfaces;
 using Core.Enums;
 using DTO;
 using DTO.Users;
@@ -14,35 +13,23 @@ namespace Presentation.Controllers
 {
 	public class UserController : Controller
 	{
-
-		private readonly IUserGetAllCase _userGetAll;
-		private readonly IUserGetByEmail _userGetByEmail;
-		private readonly IUserDelete _userDelete;
-		private readonly IUserUpdate _userUpdate;
-		private readonly IUserCreate _userCreate;
-		public UserController(
-			IUserGetAllCase userGetAll,
-			IUserGetByEmail userGetByEmail,
-			IUserDelete userDelete,
-			IUserUpdate userUpdate,
-			IUserCreate userCreate)
-		{
-			_userGetByEmail = userGetByEmail;
-			_userGetAll = userGetAll;
-			_userDelete = userDelete;
-			_userUpdate = userUpdate;
-			_userCreate = userCreate;
-		}
+		public UserController() { }
 
 		[HttpGet]
 		public IActionResult Dashboard()
 		{
+			ViewData["Title"] = "Dashboard";
+			IActionResult loginCheck = CheckUserIsLogged();
+			if (loginCheck != null) return loginCheck;
 			return View();
 		}
 
 		[HttpGet]
 		public IActionResult Users()
 		{
+
+			ViewData["Title"] = "Users";
+
 			IActionResult loginCheck = CheckUserIsLogged();
 			if (loginCheck != null) return loginCheck;
 
@@ -52,11 +39,35 @@ namespace Presentation.Controllers
 			IActionResult employeeCheck = EmployeeCantAccess();
 			if (employeeCheck != null) return employeeCheck;
 
-			UsersViewModelUsers model = new UsersViewModelUsers { };
 			try
 			{
-				List<UserListDto> users = _userGetAll.Execute().ToList();
-				model.Users = users;
+				UsersViewModelUsers model = new UsersViewModelUsers
+				{
+					Users = new List<UserListDto>()
+				{
+					new UserListDto
+					{
+						Id = 1,
+						Name = "John Doe",
+						Email = "john.doe@yourdelivery.com",
+						Phone = "123-456-7890",
+					},
+					new UserListDto
+					{
+						Id = 2,
+						Name = "Jane Smith",
+						Email = "jane.smith@yourdelivery.com",
+						Phone = "987-654-3210",
+					},
+					new UserListDto
+					{
+						Id = 3,
+						Name = "Alice Johnson",
+						Email = "alice.johnson@yourdelivery.com",
+						Phone = "555-555-5555",
+					},
+				}
+				};
 				return View(model);
 			}
 			catch (Exception e)
@@ -67,116 +78,31 @@ namespace Presentation.Controllers
 
 
 		[HttpGet]
-		public IActionResult Profile(string email)
+		public IActionResult Profile()
 		{
+
+			ViewData["Title"] = "Profile";
+
 			IActionResult loginCheck = CheckUserIsLogged();
 			if (loginCheck != null) return loginCheck;
 
-			try
+			UsersViewModelProfile model = new UsersViewModelProfile
 			{
-				Role role = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User")).Role;
-				UserProfileDto user = _userGetByEmail.Execute(email);
+				User = JsonSerializer.Deserialize<UserProfileDto>(HttpContext.Session.GetString("User"))
+			};
 
-				if (Enum.GetName(role) != Role.Administrator.ToString() && user.Email != email)
-					return RedirectToAction("Index", "Error", new { error = "You lack of privileges to enter this page" });
-
-				UsersViewModelProfile model = new UsersViewModelProfile
-				{
-					User = user.Email == email ? user : _userGetByEmail.Execute(email),
-					UserRole = role
-				};
-
-				ViewData["Title"] = "Profile";
-				return View(model);
-			}
-			catch (Exception e)
-			{
-				UsersViewModelUsers model = new UsersViewModelUsers
-				{
-					Users = _userGetAll.Execute().ToList(),
-					Message = e.Message
-				};
-
-				return View("Users", model);
-			}
+			return View(model);
 		}
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public IActionResult Delete(string email)
-		{
-			IActionResult loginCheck = CheckUserIsLogged();
-			if (loginCheck != null) return loginCheck;
 
-			IActionResult clientCheck = ClientCantAccess();
-			if (clientCheck != null) return clientCheck;
-
-			IActionResult employeeCheck = EmployeeCantAccess();
-			if (employeeCheck != null) return employeeCheck;
-
-			try
-			{
-				if (string.IsNullOrEmpty(email))
-					throw new ArgumentException("Email is missing.");
-				UserDto employee = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User"));
-				// UserDelete usecase uses UserProfileDTO
-				UserProfileDto employeeDto = _userGetByEmail.Execute(employee.Email);
-
-				if (employeeDto == null)
-				{
-					throw new Exception("Something went wrong");
-				}
-
-				// This is the user that will be deleted
-				UserProfileDto userDto = _userGetByEmail.Execute(email);
-				if (userDto == null)
-					throw new Exception("User not found.");
-
-				userDto.UpdatedByID = employee.Id;
-				userDto.LastUpdated = DateTime.Now;
-				_userDelete.Execute(userDto);
-
-				return RedirectToAction("Users");
-			}
-			catch (Exception e)
-			{
-				UsersViewModelUsers model = new UsersViewModelUsers
-				{
-					Users = _userGetAll.Execute().ToList(),
-					Message = e.Message
-				};
-
-				return View("Users", model);
-			}
-		}
-
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public IActionResult Update(UserProfileDto editedUser)
-		{
-			IActionResult loginCheck = CheckUserIsLogged();
-			if (loginCheck != null) return loginCheck;
-
-			IActionResult clientCheck = ClientCantAccess();
-			if (clientCheck != null) return clientCheck;
-
-			IActionResult employeeCheck = EmployeeCantAccess();
-			if (employeeCheck != null) return employeeCheck;
-
-			UserDto employee = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User"));
-
-			editedUser.UpdatedByID = employee.Id;
-			editedUser.LastUpdated = DateTime.Now;
-			_userUpdate.Execute(editedUser);
-
-			// if not admin, return to dashboard, if it is, return to users list
-			return RedirectToAction("Users");
-		}
 
 
 		[HttpGet]
 		public IActionResult NewUser()
 		{
+
+			ViewData["Title"] = "New User";
+
 			UsersViewModelNewUser model = new UsersViewModelNewUser { };
 
 			IActionResult loginCheck = CheckUserIsLogged();
@@ -191,36 +117,6 @@ namespace Presentation.Controllers
 			return View(model);
 		}
 
-		[HttpPost]
-		public IActionResult SubmitNewUser(UserRegistrationDto user)
-		{
-			UsersViewModelNewUser model = new UsersViewModelNewUser { };
-
-			try
-			{
-				IActionResult loginCheck = CheckUserIsLogged();
-				if (loginCheck != null) return loginCheck;
-
-				IActionResult clientCheck = ClientCantAccess();
-				if (clientCheck != null) return clientCheck;
-
-				IActionResult employeeCheck = EmployeeCantAccess();
-				if (employeeCheck != null) return employeeCheck;
-
-				UserDto employee = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User"));
-				user.CreatedByID = employee.Id;
-				user.LastUpdated = DateTime.Now;
-
-				_userCreate.Execute(user);
-				return RedirectToAction("Users");
-			}
-			catch (Exception e)
-			{
-				model.Message = e.Message;
-			}
-
-			return View("NewUser", model);
-		}
 
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

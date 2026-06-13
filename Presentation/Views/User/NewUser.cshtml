@@ -1,59 +1,76 @@
 @using Core.Enums
 @model UsersViewModelNewUser
+
+<div class="page-header">
+	<h1>Add Employee</h1>
+	<p class="subtitle">Register a new team member.</p>
+</div>
+
 @if (!string.IsNullOrEmpty(Model.Message))
 {
-    <div class="alert alert-danger">@Model.Message</div>
+	<div class="alert alert-danger"><i class="bi bi-exclamation-triangle me-2"></i>@Model.Message</div>
 }
 
-<section class="mt-5 d-flex flex-column justify-content-center">
-    <div>
-        <figure class="d-flex align-content-center justify-content-center">
-            <img src="/assets/unknownProfile.png" width="300" alt="User Photo">
-        </figure>
+<div class="form-card form-card--wide card-surface animate-in">
+	<div class="profile-avatar">
+		<img src="/assets/unknownProfile.png" alt="New user">
+		<div class="profile-avatar__meta">
+			<h2>New employee</h2>
+			<span class="text-muted">Fill in the details below</span>
+		</div>
+	</div>
 
-        <form asp-action="SubmitNewUser" asp-controller="User" method="post">
-            @Html.AntiForgeryToken()
-            <div class="d-flex flex-column justify-content-center align-content-center gap-2 mt-3">
-                <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
-                    <input class="mb-0 form-control" type="hidden" name="Id" value="" readonly />
-                    <input class="mb-0 form-control" name="Email" placeholder="Email" value="" />
-                    <input class="mb-0 form-control" type="password" name="Password" placeholder="Password" value="" />
-                </div>
+	<form asp-action="SubmitNewUser" asp-controller="User" method="post">
+		@Html.AntiForgeryToken()
+		<input type="hidden" name="Id" value="" />
 
-                <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
-                    <input class="mb-0 form-control" name="Name" placeholder="Name" value="" />
-                    <input class="mb-0 form-control" name="Lastname" placeholder="Lastname" value="" />
+		<div class="form-grid">
+			<div>
+				<label class="form-label">Email</label>
+				<input class="form-control" name="Email" placeholder="name@yourdelivery.com" />
+			</div>
+			<div>
+				<label class="form-label">Password</label>
+				<input class="form-control" type="password" name="Password" placeholder="Password" />
+			</div>
+			<div>
+				<label class="form-label">Name</label>
+				<input class="form-control" name="Name" placeholder="Name" />
+			</div>
+			<div>
+				<label class="form-label">Lastname</label>
+				<input class="form-control" name="Lastname" placeholder="Lastname" />
+			</div>
+			<div>
+				<label class="form-label">Role</label>
+				<select class="form-select" name="Role">
+					<option disabled value="@Role.Administrator">Administrator</option>
+					<option selected="selected" value="@Role.Employee">Employee</option>
+					<option disabled value="@Role.Client">Client</option>
+				</select>
+			</div>
+			<div>
+				<label class="form-label">Gender</label>
+				<select class="form-select" name="Gender">
+					<option selected="selected" disabled value="">Choose a gender</option>
+					<option value="@Gender.Female">Female</option>
+					<option value="@Gender.Male">Male</option>
+				</select>
+			</div>
+			<div>
+				<label class="form-label">Phone</label>
+				<input class="form-control" name="Phone" placeholder="Phone" />
+			</div>
+			<div>
+				<label class="form-label">Birth date</label>
+				<input type="date" class="form-control" name="Birth" />
+			</div>
+		</div>
 
-                </div>
-
-                <div class="input-group d-flex justify-content-center align-content-center gap-4">
-                    <select class="mb-0 form-select">
-                        <!-- Agus: even though we are able to create both Admins and Clients
-                        for this due date we only need CRUDs for Employee. I'd rather focus
-                        on sticking to the assignment and make sure everything works. -->
-                        <option disabled value="@Role.Administrator">Administrator</option>
-                        <option selected="selected" value="@Role.Employee">Employee</option>
-                        <option disabled value="@Role.Client">Client</option>
-                    </select>
-
-                    <select class="mb-0 form-select">
-                        <option selected="selected" disabled value="">Choose a gender</option>
-                        <option value="@Gender.Female">Female</option>
-                        <option value="@Gender.Male">Male</option>
-                    </select>
-                </div>
-
-                <div class="input-group d-flex flex-row justify-content-center align-content-center gap-4">
-                    <input class="mb-0 form-control" name="Phone" value="" placeholder="Phone" />
-                    <input type="date" class="mb-0 form-control" name="Birth" value="" />
-                </div>
-                <div class="d-flex justify-content-center mt-3">
-                    <button type="submit" class="btn btn-success" title="Save Changes">
-                        <i class="bi bi-check-circle"></i> Save
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-</section>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-success" title="Save">
+				<i class="bi bi-check-circle me-2"></i>Save employee
+			</button>
+		</div>
+	</form>
+</div>

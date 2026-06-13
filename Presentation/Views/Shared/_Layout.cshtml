@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,30 +10,32 @@
 	<link rel="stylesheet" href="~/Presentation.styles.css" asp-append-version="true" />
 </head>
 
-<body>
-@if (@Context.Session.GetString("User") != null)
-{
-	Html.RenderPartialAsync("_Sidebar");
+@{
+	var isLoggedIn = Context.Session.GetString("User") != null;
 }
-<div class="container h-100 w-100">
-	<main role="main" class="">
-		@RenderBody()
-	</main>
-</div>
 
-@if (Context.Session.GetString("User") == null)
+<body class="app-body @(isLoggedIn ? "" : "auth-body")">
+	@if (isLoggedIn)
 	{
-		<footer class="footer text-muted text-center ">
-			<div class="container bg-secondary">
-				&copy; 2025 - Obligatorio - N3F - Agustin Lasalvia - Martin Leib
-			</div>
+		@await Html.PartialAsync("_Sidebar")
+		<main role="main" class="app-main animate-in">
+			@RenderBody()
+		</main>
+	}
+	else
+	{
+		<main role="main" class="auth-main">
+			@RenderBody()
+		</main>
+		<footer class="auth-footer text-center">
+			&copy; 2025 - YourDelivery - Agustin Lasalvia
 		</footer>
-	} 
+	}
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-@await RenderSectionAsync("Scripts", required: false)
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

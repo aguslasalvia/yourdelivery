@@ -1,141 +1,114 @@
 ﻿using System.Diagnostics;
-using Application.Interfaces;
 using System.Text.Json;
-using Application.Interfaces.Agency;
 using Core.Enums;
 using DTO;
 using DTO.Users;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
-using Core.Entities;
 
 
 namespace Presentation.Controllers
 {
 	public class ShippingController : Controller
 	{
-		private readonly IAgencyShippingGetAll _agencyShippingGetAll;
-		private readonly IAgencyGetById _agencyGetById;
-		private readonly IUserGetAllClients _userGetAllClients;
-		private readonly IUserGetByEmail _userGetByEmail;
-		private readonly IShippingCreate _shippingCreate;
-		private readonly IShippingGetByClientId _shippingGetByClientId;
-		private readonly IShippingGetById _shippingGetById;
-		private readonly IShippingClose _shippingClose;
-		private readonly IShippingOnProcess _shippingOnProcess;
-
-		private readonly IShippingGetAllOnProcess _shippingGetAllOnProcess;
-		public ShippingController(
-			IAgencyShippingGetAll agencyShippingGetAll,
-			IAgencyGetById agencyGetById,
-			IUserGetAllClients userGetAllClients,
-			IUserGetByEmail userGetByEmail,
-			IShippingCreate shippingCreate,
-			IShippingGetByClientId shippingGetByClientId,
-			IShippingGetAllOnProcess shippingGetAllOnProcess,
-			IShippingGetById shippingGetById,
-			IShippingClose shippingClose
-			// ICommentaryGetAll commentaryGetAll
-			)
-		{
-			_userGetByEmail = userGetByEmail;
-			_shippingCreate = shippingCreate;
-			_agencyShippingGetAll = agencyShippingGetAll;
-			_agencyGetById = agencyGetById;
-			_userGetAllClients = userGetAllClients;
-			_shippingGetByClientId = shippingGetByClientId;
-			_shippingGetById = shippingGetById;
-			_shippingClose = shippingClose;
-			_shippingGetAllOnProcess = shippingGetAllOnProcess;
-			// _commentaryGetAll = commentaryGetAll;
-		}
+		public ShippingController() { }
 
 		[HttpGet]
 		public IActionResult NewShipping()
 		{
-			IActionResult loginCheck = CheckUserIsLogged();
-			if (loginCheck != null) return loginCheck;
-			IActionResult clientCheck = ClientCantAccess();
-			if (clientCheck != null) return clientCheck;
-
-			ShippingViewModelNew model = new ShippingViewModelNew { };
-			List<AgencyShippingDto> agencies = _agencyShippingGetAll.Execute().ToList();
-			List<UserListDto> clients = _userGetAllClients.Execute().ToList();
-			model.Agencies = agencies;
-			model.Clients = clients;
-			return View(model);
-		}
-
-		[HttpPost]
-		public IActionResult NewShipping(CreateShippingDto createShippingDto)
-		{
-			IActionResult loginCheck = CheckUserIsLogged();
-			if (loginCheck != null) return loginCheck;
-			IActionResult clientCheck = ClientCantAccess();
-			if (clientCheck != null) return clientCheck;
-
-			ShippingViewModelNew model = new ShippingViewModelNew
-			{
-				Agencies = _agencyShippingGetAll.Execute().ToList(),
-				Clients = _userGetAllClients.Execute().ToList()
-			};
-
 			try
 			{
-				UserDto employee = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User"));
-				
-				switch (createShippingDto.Type)
+				ViewData["Title"] = "New Shipping";
+				IActionResult loginCheck = CheckUserIsLogged();
+				if (loginCheck != null) return loginCheck;
+
+				ShippingViewModelNew model = new ShippingViewModelNew
 				{
-					case "Common":
-						CreateCommonShippingDto commonShipping = new CreateCommonShippingDto()
+					Agencies = new List<AgencyShippingDto>
+					{
+						new AgencyShippingDto
 						{
-							Weight = createShippingDto.Weight,
-							EmployeeId = employee.Id,
-							ClientId = _userGetByEmail.Execute(createShippingDto.ClientEmail).Id,
-							State = ShippingState.OnProcess,
-							PickupId = createShippingDto.PickupId
-						};
-						_shippingCreate.ExecuteCommon(commonShipping);
-						break;
-
-					case "Urgent":
-
-						CreateUrgentShippingDto urgentShipping = new CreateUrgentShippingDto()
+							Id = 1,
+							Name = "Agency One",
+							Address = "123 Main St",
+						},
+						new AgencyShippingDto
 						{
-							Weight = createShippingDto.Weight,
-							Employee = employee.Id,
-							Client = _userGetByEmail.Execute(createShippingDto.ClientEmail).Id,
-							State = ShippingState.OnProcess,
-							Address = createShippingDto.Address
-						};
-
-						_shippingCreate.ExecuteUrgent(urgentShipping);
-						break;
-					default:
-						throw new Exception("Unknown shipping type");
-				}
-				return RedirectToAction("NewShipping");
-			}
-			catch (Exception e)
-			{
-				model.Message = e.Message;
+							Id = 2,
+							Name = "Agency Two",
+							Address = "456 Elm St",
+						}
+					},
+					Clients = new List<UserListDto>
+					{
+						new UserListDto
+						{
+							Id = 1,
+							Name = "John Doe",
+							Email = "john.doe@example.com",
+							Phone = "123-456-7890",
+						},
+						new UserListDto
+						{
+							Id = 2,
+							Name = "Jane Smith",
+							Email = "jane.smith@example.com",
+							Phone = "987-654-3210",
+						}
+					},
+					Message = string.Empty
+				};
 				return View(model);
 			}
+			catch (Exception ex)
+			{
+				return RedirectToAction("Error", new { error = ex.Message });
+			}
 		}
+
+
 
 		[HttpGet]
 		public IActionResult Tracking(int? trackingNumber)
 		{
+
+			ViewData["Title"] = "Tracking";
+
 			IActionResult loginCheck = CheckUserIsLogged();
 			if (loginCheck != null) return loginCheck;
 			ShippingViewModelTracking model = new ShippingViewModelTracking { };
 
 			try
 			{
-				if (trackingNumber != null)
+				if (trackingNumber == null)
 				{
-					model.Shipping = _shippingGetById.Execute((int)trackingNumber);
+					throw new KeyNotFoundException("Tracking number is required.");
 				}
+
+				// Simulate fetching shipping details based on tracking number
+				// In a real application, this would involve a service call to fetch data from a database or API
+				model.Shipping = new ShippingDto
+				{
+					Id = trackingNumber.Value,
+					Weight = 2.5f,
+					Employee = new UserDto
+					{
+						Id = 1,
+						Name = "John Doe",
+						Email = "john.doe@yourdelivery.com",
+						Phone = "123-456-7890",
+						Role = Role.Employee
+					},
+					Client = new UserDto
+					{
+						Id = 2,
+						Name = "Jane Smith",
+						Email = "jane.smith@yourdelivery.com",
+						Phone = "987-654-3210",
+						Role = Role.Client
+					},
+					State = ShippingState.OnProcess
+				};
 			}
 			catch (KeyNotFoundException ex)
 			{
@@ -148,18 +121,72 @@ namespace Presentation.Controllers
 		[HttpGet]
 		public IActionResult List()
 		{
+			ViewData["Title"] = "Shippings";
+
 			IActionResult loginCheck = CheckUserIsLogged();
 			if (loginCheck != null) return loginCheck;
 			IActionResult clientCheck = ClientCantAccess();
 			if (clientCheck != null) return clientCheck;
 
-			UserDto user = JsonSerializer.Deserialize<UserDto>(HttpContext.Session.GetString("User"));
-
 			ShippingViewModelList model = new ShippingViewModelList
 			{
-				Shippings = user.Role == Role.Client
-					? _shippingGetByClientId.Execute(user.Id).ToList()
-					: _shippingGetAllOnProcess.Execute().ToList(),
+				Shippings = new List<ShippingDto>
+				{
+					new ShippingDto
+					{
+						Id = 1,
+						Weight = 2.5f,
+						State = ShippingState.OnProcess,
+						Client = new UserDto
+						{
+							Id = 1,
+							Name = "John Doe",
+							Email = "john.doe@example.com"
+						},
+						Employee = new UserDto
+						{
+							Id = 1,
+							Name = "Alice Johnson",
+							Email = "alice.johnson@example.com"
+						}
+					},
+					new ShippingDto
+					{
+						Id = 2,
+						Weight = 3.0f,
+						State = ShippingState.OnProcess,
+						Client = new UserDto
+						{
+							Id = 2,
+							Name = "Jane Smith",
+							Email = "jane.smith@example.com"
+						},
+						Employee = new UserDto
+						{
+							Id = 2,
+							Name = "Bob Brown",
+							Email = "bob.brown@example.com"
+						}
+					},
+					new ShippingDto
+					{
+						Id = 3,
+						Weight = 1.5f,
+						State = ShippingState.OnProcess,
+						Client = new UserDto
+						{
+							Id = 3,
+							Name = "Charlie White",
+							Email = "charlie.white@example.com"
+						},
+						Employee = new UserDto
+						{
+							Id = 3,
+							Name = "Eve Davis",
+							Email = "eve.davis@example.com"
+						}
+					},
+				},
 			};
 
 			return View(model);
@@ -173,7 +200,6 @@ namespace Presentation.Controllers
 			IActionResult clientCheck = ClientCantAccess();
 			if (clientCheck != null) return clientCheck;
 
-			_shippingClose.Execute(id);
 			return RedirectToAction("List");
 		}
 
@@ -186,8 +212,6 @@ namespace Presentation.Controllers
 			if (loginCheck != null) return loginCheck;
 			IActionResult clientCheck = ClientCantAccess();
 			if (clientCheck != null) return clientCheck;
-
-			_shippingOnProcess.Execute(id);
 			return RedirectToAction("List");
 		}
 

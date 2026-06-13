@@ -1,53 +1,63 @@
-﻿@if (!string.IsNullOrEmpty(Model.Message))
-{
-	<div class="alert alert-danger">@Model.Message</div>
-}
-
-@using Microsoft.EntityFrameworkCore.Metadata.Internal
 @using Core.Enums
 @model ShippingViewModelTracking
 
-<div class="d-flex flex-column justify-content-center align-items-center flex-column mt-5">
-	<h1 class="w-100 text-center">Find your package</h1>
+<div class="page-header text-center">
+	<h1>Track your package</h1>
+	<p class="subtitle">Enter a tracking number to see its current status.</p>
+</div>
 
-	<form asp-action="Tracking" asp-controller="Shipping" method="get"
-		class="w-100 align-content-center justify-content-center d-flex">
-		<div class="input-group d-flex justify-content-center w-50 align-content-center">
-			<span class="input-group-text" id="basic-addon1"><i class="bi bi-geo-alt-fill"></i></span>
-			<input type="number" class="form-control" name="trackingNumber" placeholder="Tracking Number"
-				aria-label="trackingNumber" aria-describedby="basic-addon1" required>
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+	<div class="alert alert-danger"><i class="bi bi-exclamation-triangle me-2"></i>@Model.Message</div>
+}
+
+<div class="form-card card-surface animate-in">
+	<form asp-action="Tracking" asp-controller="Shipping" method="get">
+		<div class="input-group">
+			<span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+			<input type="number" class="form-control" name="trackingNumber" placeholder="Tracking number"
+				aria-label="trackingNumber" required>
+			<button class="btn btn-primary" type="submit"><i class="bi bi-search me-1"></i>Track</button>
 		</div>
 	</form>
+</div>
 
-	<figure class="mt-5 w-100 d-flex justify-content-center">
-		<img src="/assets/tracking.png" alt="Tracking image" />
-	</figure>
-
-
-	@if (Model.Shipping != null)
-	{
-		<div class="content-container d-flex justify-content-center flex-column">
-			<h2 class="text-center mb-2">Your Package State</h2>
-			<div class="flex justify-content-center align-content-center text-center gap-3">
-				<p>Tracking Number: @Model.Shipping.Id</p>
-				<p>Client Email: @Model.Shipping.Client.Email</p>
-				<p>Employee Email: @Model.Shipping.Employee.Email</p>
-
-				@* Change this in the future *@
-				@if (Model.Shipping.State == ShippingState.OnProcess)
-				{
-					<p class="btn btn-secondary">@Model.Shipping.State</p>
-				}
-				else if (Model.Shipping.State == ShippingState.Finished)
-				{
-					<p class="btn btn-success"> @Model.Shipping.State</p>
-				}
-				else
-				{
-					<p class="btn btn-danger">Unknown</p>
-				}
+@if (Model.Shipping != null)
+{
+	<div class="tracking-result card-surface animate-in">
+		<div class="tracking-result__head">
+			<div>
+				<span class="tracking-result__label">Tracking number</span>
+				<h2 class="tracking-result__id">#@Model.Shipping.Id</h2>
+			</div>
+			@if (Model.Shipping.State == ShippingState.OnProcess)
+			{
+				<span class="status-badge status-badge--process">@Model.Shipping.State</span>
+			}
+			else if (Model.Shipping.State == ShippingState.Finished)
+			{
+				<span class="status-badge status-badge--finished">@Model.Shipping.State</span>
+			}
+			else
+			{
+				<span class="status-badge status-badge--unknown">Unknown</span>
+			}
+		</div>
+		<div class="tracking-result__grid">
+			<div>
+				<span class="tracking-result__label">Client</span>
+				<p>@Model.Shipping.Client.Email</p>
+			</div>
+			<div>
+				<span class="tracking-result__label">Employee</span>
+				<p>@Model.Shipping.Employee.Email</p>
 			</div>
 		</div>
-	}
-	<iframe src="" frameborder="0"></iframe>
-</div>
+	</div>
+}
+else
+{
+	<figure class="tracking-illustration">
+		<img src="/assets/tracking.png" alt="Tracking illustration" />
+	</figure>
+}

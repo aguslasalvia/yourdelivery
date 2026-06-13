@@ -8,6 +8,8 @@ public class AgencyShippingDto
     public string Name { get; set; }
     public string Address { get; set; }
 
+    public AgencyShippingDto() { }
+
     public AgencyShippingDto(Agency agency)
     {
         this.Id = agency.Id;

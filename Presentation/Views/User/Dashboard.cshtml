@@ -1,9 +1,69 @@
-@using Microsoft.EntityFrameworkCore.Metadata.Internal
-<div id="dashboard" class=" d-flex  justify-content-center align-items-center ">
-    <figure class="d-flex justify-content-center align-items-center">
-        <img class=" w-25" src="/assets/package.png" alt=""/>
-    </figure>
-    <p class="my-3">Select an option</p>
-    
+@{
+	var role = Context.Session.GetString("Role") ?? "";
+	var isAdmin = role == "Administrator";
+}
+
+<div id="dashboard" class="animate-in">
+	<div class="page-header">
+		<h1>Dashboard</h1>
+		<p class="subtitle">Welcome back — here's what's happening with your deliveries.</p>
+	</div>
+
+	<div class="kpi-grid">
+		<div class="kpi-card">
+			<div class="kpi-card__icon kpi-card__icon--orange"><i class="bi bi-box-seam"></i></div>
+			<div class="kpi-card__body">
+				<span class="kpi-card__value">128</span>
+				<span class="kpi-card__label">In process</span>
+			</div>
+		</div>
+		<div class="kpi-card">
+			<div class="kpi-card__icon kpi-card__icon--teal"><i class="bi bi-check2-circle"></i></div>
+			<div class="kpi-card__body">
+				<span class="kpi-card__value">1,204</span>
+				<span class="kpi-card__label">Delivered</span>
+			</div>
+		</div>
+		<div class="kpi-card">
+			<div class="kpi-card__icon kpi-card__icon--amber"><i class="bi bi-lightning-charge"></i></div>
+			<div class="kpi-card__body">
+				<span class="kpi-card__value">17</span>
+				<span class="kpi-card__label">Urgent today</span>
+			</div>
+		</div>
+		<div class="kpi-card">
+			<div class="kpi-card__icon kpi-card__icon--sky"><i class="bi bi-people"></i></div>
+			<div class="kpi-card__body">
+				<span class="kpi-card__value">42</span>
+				<span class="kpi-card__label">Active users</span>
+			</div>
+		</div>
+	</div>
+
+	<h2 class="dashboard__subtitle">Quick actions</h2>
+	<div class="quick-grid">
+		<a href="@Url.Action("NewShipping", "Shipping")" class="quick-card">
+			<i class="bi bi-plus-square"></i>
+			<span class="quick-card__title">New Shipment</span>
+			<span class="quick-card__desc">Create a common or urgent delivery</span>
+		</a>
+		<a href="@Url.Action("List", "Shipping")" class="quick-card">
+			<i class="bi bi-table"></i>
+			<span class="quick-card__title">All Shipments</span>
+			<span class="quick-card__desc">Review and update shipment status</span>
+		</a>
+		<a href="@Url.Action("Tracking", "Shipping")" class="quick-card">
+			<i class="bi bi-geo-alt"></i>
+			<span class="quick-card__title">Track Package</span>
+			<span class="quick-card__desc">Find a package by tracking number</span>
+		</a>
+		@if (isAdmin)
+		{
+			<a href="@Url.Action("NewUser", "User")" class="quick-card">
+				<i class="bi bi-person-plus"></i>
+				<span class="quick-card__title">Add Employee</span>
+				<span class="quick-card__desc">Register a new team member</span>
+			</a>
+		}
+	</div>
 </div>
-        
