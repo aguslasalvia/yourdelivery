@@ -2,38 +2,56 @@
 @using Core.Enums
 @model ShippingViewModelList
 
-<h1 class="fs-5 text-center mt-5">Showing only on process Shippings</h1>
-<table class="custom-table table w-100 mt-5">
-	<thead>
-		<tr>
-			<th>Shipping Id</th>
-			<th>Shipping State</th>
-			<th>Shipping Weight</th>
-			<th>Client</th>
-			<th>Employee</th>
-			<th>Add comment</th>
-			<th>Finish shipment</th>
-		</tr>
-	</thead>
-	<tbody class="">
-		@foreach (ShippingDto shipping in Model.Shippings)
-		{
-			<tr>
-				<td>@shipping.Id</td>
-				<td class="text-warning">@shipping.State</td>
-				<td>@shipping.Weight kg</td>
-				<td>@shipping.Client.Name @shipping.Client.Lastname</td>
-				<td>@shipping.Employee.Name @shipping.Employee.Lastname</td>
-				<td>
-					<a class="btn btn-primary" href="/Commentary/Add?id=@shipping.Id"><i
-							class="bi bi-chat-left-dots"></i></a>
-				</td>
-				<td>
-					<a class="btn btn-danger" href="/Shipping/Close?id=@shipping.Id"><i class="bi bi-x"></i></a>
-				</td>
-			</tr>
+<div class="page-header">
+	<h1>Shipments</h1>
+	<p class="subtitle">Showing shipments currently in process.</p>
+</div>
 
-
-		}
-	</tbody>
-</table>
+<div class="data-card animate-in">
+	<div class="data-card__header">
+		<h2>In process</h2>
+		<span class="text-muted small">@Model.Shippings.Count() shipments</span>
+	</div>
+	<div class="table-responsive">
+		<table class="custom-table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Status</th>
+					<th>Weight</th>
+					<th>Client</th>
+					<th>Employee</th>
+					<th class="text-end">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (!Model.Shippings.Any())
+				{
+					<tr>
+						<td colspan="6">
+							<div class="empty-state"><i class="bi bi-inbox"></i>No shipments in process.</div>
+						</td>
+					</tr>
+				}
+				@foreach (ShippingDto shipping in Model.Shippings)
+				{
+					<tr>
+						<td class="fw-500">#@shipping.Id</td>
+						<td><span class="status-badge status-badge--process">@shipping.State</span></td>
+						<td>@shipping.Weight kg</td>
+						<td>@shipping.Client.Name @shipping.Client.Lastname</td>
+						<td>@shipping.Employee.Name @shipping.Employee.Lastname</td>
+						<td class="text-end text-nowrap">
+							<a class="btn btn-secondary btn-icon" href="/Commentary/Add?id=@shipping.Id" title="Add comment">
+								<i class="bi bi-chat-left-dots"></i>
+							</a>
+							<a class="btn btn-danger btn-icon" href="/Shipping/Close?id=@shipping.Id" title="Finish shipment">
+								<i class="bi bi-check2"></i>
+							</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

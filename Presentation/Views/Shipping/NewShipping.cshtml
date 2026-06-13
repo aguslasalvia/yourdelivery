@@ -1,23 +1,25 @@
 @using DTO
 @model ShippingViewModelNew
 
+<div class="page-header">
+	<h1>New Shipment</h1>
+	<p class="subtitle">Create a common or urgent delivery.</p>
+</div>
+
 @if (!string.IsNullOrEmpty(Model.Message))
 {
-	<div class="alert alert-danger">@Model.Message</div>
+	<div class="alert alert-danger"><i class="bi bi-exclamation-triangle me-2"></i>@Model.Message</div>
 }
 
-<div class="d-flex flex-column justify-content-center align-items-center flex-column mt-5">
-	<h1 class="mb-5">Create a new shipment</h1>
+<div class="form-card card-surface animate-in">
 	<form method="post" asp-action="NewShipping" asp-controller="Shipping">
 		<div class="mb-3">
-			<label for="weight" class="form-label">Weight (in kg.)</label>
-			<input type="text" inputmode="decimal" class="form-control" id="weight" placeholder="5.25" name="Weight"
-				required="required" />
+			<label for="weight" class="form-label">Weight (kg)</label>
+			<input type="text" inputmode="decimal" class="form-control" id="weight" placeholder="5.25" name="Weight" required />
 		</div>
 		<div class="mb-3">
-			<label for="userEmail" class="form-label">User email</label>
-			<input type="email" list="user-email" class="form-control" id="userEmail" placeholder="pepe@hotmail.com"
-				name="ClientEmail" required="required" />
+			<label for="userEmail" class="form-label">Client email</label>
+			<input type="email" list="user-email" class="form-control" id="userEmail" placeholder="client@example.com" name="ClientEmail" required />
 			<datalist id="user-email">
 				@foreach (var user in Model.Clients)
 				{
@@ -26,15 +28,16 @@
 			</datalist>
 		</div>
 		<div class="mb-3">
-			<select id="select__shipment_type" class="form-select" onchange="handleSelectChange(this)" name="Type"
-				required>
+			<label class="form-label">Shipment type</label>
+			<select id="select__shipment_type" class="form-select" onchange="handleSelectChange(this)" name="Type" required>
 				<option value="" selected disabled>Select shipment type</option>
 				<option value="Common">Common</option>
 				<option value="Urgent">Urgent</option>
 			</select>
 		</div>
 		<div class="mb-3" style="display: none" id="common__shipping">
-			<select id="select__common" class="form-select" name="PickupId" required>
+			<label class="form-label">Pickup agency</label>
+			<select id="select__common" class="form-select" name="PickupId">
 				<option value="" selected disabled>Select an agency</option>
 				@foreach (AgencyShippingDto agency in Model.Agencies)
 				{
@@ -42,14 +45,13 @@
 				}
 			</select>
 		</div>
-		<div style="display: none" id="urgent__shipping">
-			<label for="urgentShippingInput" class="form-label">Type the final address</label>
-			<input id="urgentShippingInput" class="form-control" type="text" placeholder="9435 40th W St, 15500"
-				name="Address" />
+		<div class="mb-3" style="display: none" id="urgent__shipping">
+			<label for="urgentShippingInput" class="form-label">Final address</label>
+			<input id="urgentShippingInput" class="form-control" type="text" placeholder="9435 40th W St, 15500" name="Address" />
 		</div>
-		<div class="mt-3">
-			<input type="submit" class="btn btn-primary w-100" value="Create shipment" />
-		</div>
+		<button type="submit" class="btn btn-primary w-100 mt-2">
+			<i class="bi bi-box-seam me-2"></i>Create shipment
+		</button>
 	</form>
 </div>
 
@@ -70,5 +72,4 @@
 			commonShippingDiv.style.display = "none";
 		}
 	}
-
 </script>

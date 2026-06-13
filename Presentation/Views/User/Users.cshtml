@@ -1,32 +1,58 @@
-﻿@model UsersViewModelUsers
+@model UsersViewModelUsers
+
+<div class="page-header d-flex justify-content-between align-items-end flex-wrap gap-2">
+	<div>
+		<h1>Users</h1>
+		<p class="subtitle">Manage customers and team members.</p>
+	</div>
+	<a class="btn btn-primary" href="@Url.Action("NewUser", "User")">
+		<i class="bi bi-person-plus me-2"></i>Add Employee
+	</a>
+</div>
+
 @if (!string.IsNullOrEmpty(Model.Message))
 {
-	<div class="alert alert-danger">@Model.Message</div>
+	<div class="alert alert-danger"><i class="bi bi-exclamation-triangle me-2"></i>@Model.Message</div>
 }
 
-<table class="custom-table table w-100 mt-5">
-    <thead>
-    <tr>
-        <th>Full Name</th>
-        <th>Phone</th>
-        <th>Email</th>
-        
-        @* This is a header for the button functionality *@
-        <th class=""><a class="btn btn-success" href="~/User/NewUser"><i class="bi bi-person-plus"></i></a></th>
-    </tr>
-    </thead>
-    <tbody class="" >
-    @foreach(var user in Model.Users)
-    {
-        <tr class="">
-            <td>@user.Name @user.Lastname</td>
-            <td>@user.Phone</td>
-            <td>@user.Email</td>
-
-            <td><a class="btn btn-secondary" href="~/User/Profile?email=@user.Email">
-                <i class="bi bi-info-square"></i>
-            </a></td>
-        </tr>
-    }
-    </tbody>
-</table>
+<div class="data-card animate-in">
+	<div class="data-card__header">
+		<h2>All users</h2>
+		<span class="text-muted small">@Model.Users.Count() total</span>
+	</div>
+	<div class="table-responsive">
+		<table class="custom-table">
+			<thead>
+				<tr>
+					<th>Full Name</th>
+					<th>Phone</th>
+					<th>Email</th>
+					<th class="text-end">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (!Model.Users.Any())
+				{
+					<tr>
+						<td colspan="4">
+							<div class="empty-state"><i class="bi bi-people"></i>No users to show yet.</div>
+						</td>
+					</tr>
+				}
+				@foreach (var user in Model.Users)
+				{
+					<tr>
+						<td class="fw-500">@user.Name @user.Lastname</td>
+						<td>@user.Phone</td>
+						<td>@user.Email</td>
+						<td class="text-end">
+							<a class="btn btn-secondary btn-icon" href="@Url.Action("Profile", "User", new { email = user.Email })" title="View profile">
+								<i class="bi bi-info-lg"></i>
+							</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
